@@ -1,8 +1,9 @@
-import React from "react";
-
+import React from 'react';
+import styled from 'styled-components';
 const test = () => {
+    const b;
   const a = s => {
-    console.log("sadsd");
+    console.log('sadsd');
   };
   return <div>test</div>;
 };
