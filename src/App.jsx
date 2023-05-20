@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import GlobalStyle from './styles/GlobalStyle';
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 const Wrapper = styled.div`
   background-color: white;
@@ -25,6 +26,15 @@ function App() {
     const maxWidth = Math.min(375, windowWidth);
     document.documentElement.style.setProperty('--app-max-width', `${maxWidth}px`);
   };
+
+  useEffect(() => {
+    setScreenSize();
+    window.addEventListener('resize', setScreenSize);
+
+    return () => {
+      window.removeEventListener('resize', setScreenSize);
+    };
+  }, []);
 
   return (
     <Wrapper>
