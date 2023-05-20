@@ -17,10 +17,10 @@
   <th> 조연서 <a href="https://github.com/Yeonseo-Jo"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white&link=https://github.com/Yeonseo-Jo"/></a>  </th>
 	<tr>
 	<td> 팀원 소개 </td>
-		<td> <img width="237" alt="image" src="https://github.com/SopkathonTeam2/Client/assets/77691829/6e0a7fd2-cbf6-403a-b0b8-2ce6ece243dc">
+		<td> <img width="230" alt="image" src="https://github.com/SopkathonTeam2/Client/assets/77691829/6e0a7fd2-cbf6-403a-b0b8-2ce6ece243dc">
  </td>
-		<td> <img width="237" alt="image" src="https://github.com/SopkathonTeam2/Client/assets/77691829/d3a87ab2-ad16-47e8-a316-6dbdd6981406"><p align="center">울 언니 예쁘죠 ~</p></td>  
-		<td><img width="237" height="270" alt="image" src="https://github.com/SopkathonTeam2/Client/assets/77691829/4828df0b-3fad-44bd-a243-7682687aff66"></td>
+		<td> <img width="230" alt="image" src="https://github.com/SopkathonTeam2/Client/assets/77691829/d3a87ab2-ad16-47e8-a316-6dbdd6981406"><p align="center">울 언니 예쁘죠 ~</p></td>  
+		<td><img width="230" height="270" alt="image" src="https://github.com/SopkathonTeam2/Client/assets/77691829/4828df0b-3fad-44bd-a243-7682687aff66"></td>
 	</tr>
 	<tr>
 	<td> 맡은 뷰 </td>
