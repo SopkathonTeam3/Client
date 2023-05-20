@@ -67,34 +67,41 @@
 	<td> 맡은 뷰 </td>
 	<td>
 		<ul>
-		<li> 온보딩 페이지, bottle 컴포넌트, bottle list 컴포넌트 </li>
+			<li> 온보딩 페이지, bottle 컴포넌트 </li> 
+			<li> bottle list 컴포넌트 </li>
 		</ul>
 	</td>
 	<td>
 		<ul>
-		<li> 모달, 모달 폼, 모달 info 컴포넌트 </li>
+			<li> 모달 컴포넌트 </li>
+			<li> 모달 폼 컴포넌트 </li>
+			<li> 모달 info 컴포넌트 </li>
 		</ul>
 	</td>
 	<td>
 		<ul>
-		<li> 커스텀 페이지, 로딩 페이지, background 컴포넌트(메인) </li>
+			<li> 유저 페이지 </li>
+			<li> 커스텀 페이지 </li>
+			<li> 로딩 페이지 </li>
+			<li> background 컴포넌트(메인) </li>
 		</ul>
 	</tr>
 		<tr>
 	<td> 담당 API </td>
 	<td>
 		<ul>
-		<li> `~~ GET` </li>
+		<li> bottle list 메모 조회 GET </li>
 		</ul>
 	</td>
 	<td>
 		<ul>
-		<li> `~~ GET` </li>
+		<li> bottle 메시지 모달 폼 POST </li>
 		</ul>
 	</td>
 	<td>
 		<ul>
-		<li> `~~ GET` </li>
+		<li> 유저 등록 POST </li>
+		<li> background 컴포넌트 GET </li>
 		</ul>
 	</tr>
 	</table>
