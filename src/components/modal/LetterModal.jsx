@@ -1,13 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import ModalClose from '../../assets/svgs/modal_close.svg';
+import Message from '../../assets/svgs/modal_message.svg';
 
-const LetterModal = () => {
+const LetterModal = ({ setIsOpen }) => {
+  const [answerOne, setAnswerOne] = useState('');
+  const [answerTwo, setAnswerTwo] = useState('');
+
+  const onAnswerOne = e => {
+    setAnswerOne(e.target.value);
+  };
+  const onAnswerTwo = e => {
+    setAnswerTwo(e.target.value);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
+  const onClick = () => {
+    console.log('here');
+  };
   return (
     <>
       <St.ModalWrapper>
         <St.ModalHeader>
           <St.ModalHeaderContent>
-            <St.ModalIconWrapper></St.ModalIconWrapper>
+            <St.ModalIconWrapper>
+              <CloseModal onClick={closeModal} src={ModalClose} alt="modalClose" />
+            </St.ModalIconWrapper>
+
+            <MessageIcon src={Message} alt="messageIcon" />
             <St.ModalHeaderTitle>
               윤여진님에게 <br />
               편지를 남겨주세요!
@@ -17,13 +40,23 @@ const LetterModal = () => {
         <St.ModalMain>
           <St.ModalQuestion>Q.첫인상은 어땠나요?</St.ModalQuestion>
           <p>
-            <St.ModalAnswerBox maxlength="50" placeholder="50자 내로 작성해주세요" />
+            <St.ModalAnswerBox
+              onChange={onAnswerOne}
+              maxLength="50"
+              placeholder="50자 내로 작성해주세요"
+            />
           </p>
 
           <St.ModalQuestion>Q.의외의 지점은 무엇이었나요?</St.ModalQuestion>
-          <St.ModalAnswerBox maxlength="50" placeholder="50자 내로 작성해주세요" />
+          <St.ModalAnswerBox
+            onChange={onAnswerTwo}
+            maxLength="50"
+            placeholder="50자 내로 작성해주세요"
+          />
         </St.ModalMain>
-        <St.ModalBtn>편지 띄우기 </St.ModalBtn>
+        <St.ModalBtn onClick={onClick} disabled={answerOne.length < 1 && answerTwo.length < 1}>
+          편지 띄우기
+        </St.ModalBtn>
       </St.ModalWrapper>
     </>
   );
@@ -70,11 +103,11 @@ const St = {
   ModalIconWrapper: styled.div`
     display: flex;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: flex-end;
     flex-direction: column;
-    width: 22.7rem;
+    width: 27.7rem;
 
-    height: 5rem;
+    height: auto;
   `,
 
   ModalHeaderTitle: styled.h1`
@@ -91,7 +124,7 @@ const St = {
     align-items: center;
     justify-content: center;
     background-color: ${({ theme }) => theme.color.gray50};
-    color: ${({ theme }) => theme.color.gray300};
+    color: ${({ theme }) => theme.color.gray500};
 
     border-radius: 8px;
     width: 27.1rem;
@@ -99,6 +132,7 @@ const St = {
 
     margin-bottom: 2.4rem;
     padding: 2rem;
+    resize: none;
     ${({ theme }) => theme.text.body2};
   `,
   ModalQuestion: styled.h2`
@@ -116,6 +150,7 @@ const St = {
     height: 6.9rem;
 
     background-color: ${({ theme }) => theme.color.black};
+
     color: ${({ theme }) => theme.color.white};
     ${({ theme }) => theme.text.subtitle1};
 
@@ -123,3 +158,13 @@ const St = {
     border-bottom-right-radius: 1.2rem;
   `,
 };
+
+const CloseModal = styled.img`
+  width: 2.4rem;
+  height: 2.4rem;
+`;
+
+const MessageIcon = styled.img`
+  width: 3.8rem;
+  height: 3.8rem;
+`;

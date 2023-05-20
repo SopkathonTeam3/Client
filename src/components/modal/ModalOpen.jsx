@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
-import RequestModal from './RequestModal';
+import LetterModal from './LetterModal';
 
 const ModalOpen = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = () => {
-    isOpen(true);
+  const openModal = () => {
+    setIsOpen(true);
   };
-  return ()
+  return (
+    <div>
+      <button onClick={openModal}>modal</button>
+      {isOpen && <LetterModal setIsOpen={setIsOpen} />}
+    </div>
+  );
 };
 
 export default ModalOpen;
