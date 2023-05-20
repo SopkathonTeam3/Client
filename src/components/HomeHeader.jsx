@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useGetLetter } from '../recoil/useGetLetter';
+import { useRecoilValue } from 'recoil';
+import { bottleAtom } from './../recoil/atoms/bottleAtom';
 
 const HomeHeader = () => {
+  const [userName, setUserName] = useState();
+  const [reaminDays, setRemainDays] = useState();
   //링크 복사
   const handleCopyClipBoard = async text => {
     try {
@@ -12,16 +17,24 @@ const HomeHeader = () => {
     }
   };
 
+  // 이름 & 남은 날짜 데이터 받아오기
+  const getAiosData = useRecoilValue(bottleAtom);
+
+  useEffect(() => {
+    setUserName(getAiosData.data.userResponseDto.name);
+    setRemainDays(getAiosData.data.roomResponseDto.remainingDays);
+  }, []);
+
   return (
     <St.headerWrapper>
       <St.headerTop>
-        <St.headerTitle>윤여진님의 바다</St.headerTitle>
+        <St.headerTitle>윤{userName}님의 바다</St.headerTitle>
         <St.headerBtn onClick={() => handleCopyClipBoard(window.location.href)}>
           편지 요청하기
         </St.headerBtn>
       </St.headerTop>
       <St.headerContent>
-        편지 열람까지 <St.dayHighLight>7</St.dayHighLight>일 남았어요
+        편지 열람까지 <St.dayHighLight>{reaminDays}</St.dayHighLight>일 남았어요
       </St.headerContent>
     </St.headerWrapper>
   );
