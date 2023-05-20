@@ -1,3 +1,5 @@
+import test from 'pages/test';
+
 function App() {
   return (
     <>

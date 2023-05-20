@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import testcompo from 'components/testcompo';
 const test = () => {
-    const b;
   const a = s => {
     console.log('sadsd');
   };
