@@ -1,8 +1,14 @@
+import Router from './Router';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styles/theme';
+import GlobalStyle from './styles/GlobalStyle';
+
 function App() {
   return (
-    <>
-      <div>혜인 연서 재훈 화이팅</div>
-    </>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Router />
+    </ThemeProvider>
   );
 }
 
