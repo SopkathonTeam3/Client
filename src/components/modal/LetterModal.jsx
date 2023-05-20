@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import message from '../common/assets/icon/message.svg';
-import close from '../common/assets/icon/close.svg';
 
 const LetterModal = () => {
   return (
