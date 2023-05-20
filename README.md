@@ -17,9 +17,10 @@
   <th> 조연서 <a href="https://github.com/Yeonseo-Jo"><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white&link=https://github.com/Yeonseo-Jo"/></a>  </th>
 	<tr>
 	<td> 팀원 소개 </td>
-		<td> 이미지 ~
-		<td> 이미지 ~
-		<td> 이미지 ~</td>
+		<td> <img width="237" alt="image" src="https://github.com/SopkathonTeam2/Client/assets/77691829/6e0a7fd2-cbf6-403a-b0b8-2ce6ece243dc">
+ </td>
+		<td> <img width="237" alt="image" src="https://github.com/SopkathonTeam2/Client/assets/77691829/d3a87ab2-ad16-47e8-a316-6dbdd6981406"><p align="center">울 언니 예쁘죠 ~</p></td>  
+		<td><img width="237" height="270" alt="image" src="https://github.com/SopkathonTeam2/Client/assets/77691829/4828df0b-3fad-44bd-a243-7682687aff66"></td>
 	</tr>
 	<tr>
 	<td> 맡은 뷰 </td>
@@ -78,6 +79,9 @@
 ## ✍🏻 컨벤션
 
 ### ✨ Git 컨벤션
+
+<a href="https://www.notion.so/git-8a86d89ed70e4c48b2e5281b9a3f82f3"><img src="https://img.shields.io/badge/Notion 링크-white?style=for-the-badge&logo=Notion&logoColor=000000"/></a>
+
 <details>
 <summary> 1️⃣ Commit 컨벤션  </summary>
 
@@ -114,6 +118,9 @@
 <br/>
 
 ### ✨ Project 컨벤션
+
+<a href="https://www.notion.so/58613717803b455692f31682d3773ebc"><img src="https://img.shields.io/badge/Notion 링크-white?style=for-the-badge&logo=Notion&logoColor=000000"/></a>
+
 <details>
 <summary >1️⃣ 폴더 구조 </summary>
 
