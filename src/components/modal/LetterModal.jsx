@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ModalClose from '../../assets/svgs/modal_close.svg';
 import Message from '../../assets/svgs/modal_message.svg';
 
-const LetterModal = ({ setIsOpen }) => {
+const LetterModal = ({ isOpen }) => {
   const [answerOne, setAnswerOne] = useState('');
   const [answerTwo, setAnswerTwo] = useState('');
 
@@ -22,43 +22,41 @@ const LetterModal = ({ setIsOpen }) => {
     console.log('here');
   };
   return (
-    <>
-      <St.ModalWrapper>
-        <St.ModalHeader>
-          <St.ModalHeaderContent>
-            <St.ModalIconWrapper>
-              <CloseModal onClick={closeModal} src={ModalClose} alt="modalClose" />
-            </St.ModalIconWrapper>
+    <St.ModalWrapper isOpen={isOpen}>
+      <St.ModalHeader>
+        <St.ModalHeaderContent>
+          <St.ModalIconWrapper>
+            <CloseModal onClick={closeModal} src={ModalClose} alt="modalClose" />
+          </St.ModalIconWrapper>
 
-            <MessageIcon src={Message} alt="messageIcon" />
-            <St.ModalHeaderTitle>
-              윤여진님에게 <br />
-              편지를 남겨주세요!
-            </St.ModalHeaderTitle>
-          </St.ModalHeaderContent>
-        </St.ModalHeader>
-        <St.ModalMain>
-          <St.ModalQuestion>Q.첫인상은 어땠나요?</St.ModalQuestion>
-          <p>
-            <St.ModalAnswerBox
-              onChange={onAnswerOne}
-              maxLength="50"
-              placeholder="50자 내로 작성해주세요"
-            />
-          </p>
-
-          <St.ModalQuestion>Q.의외의 지점은 무엇이었나요?</St.ModalQuestion>
+          <MessageIcon src={Message} alt="messageIcon" />
+          <St.ModalHeaderTitle>
+            윤여진님에게 <br />
+            편지를 남겨주세요!
+          </St.ModalHeaderTitle>
+        </St.ModalHeaderContent>
+      </St.ModalHeader>
+      <St.ModalMain>
+        <St.ModalQuestion>Q.첫인상은 어땠나요?</St.ModalQuestion>
+        <p>
           <St.ModalAnswerBox
-            onChange={onAnswerTwo}
+            onChange={onAnswerOne}
             maxLength="50"
             placeholder="50자 내로 작성해주세요"
           />
-        </St.ModalMain>
-        <St.ModalBtn onClick={onClick} disabled={answerOne.length < 1 && answerTwo.length < 1}>
-          편지 띄우기
-        </St.ModalBtn>
-      </St.ModalWrapper>
-    </>
+        </p>
+
+        <St.ModalQuestion>Q.의외의 지점은 무엇이었나요?</St.ModalQuestion>
+        <St.ModalAnswerBox
+          onChange={onAnswerTwo}
+          maxLength="50"
+          placeholder="50자 내로 작성해주세요"
+        />
+      </St.ModalMain>
+      <St.ModalBtn onClick={onClick} disabled={answerOne.length < 1 && answerTwo.length < 1}>
+        편지 띄우기
+      </St.ModalBtn>
+    </St.ModalWrapper>
   );
 };
 
@@ -66,7 +64,8 @@ export default LetterModal;
 
 const St = {
   ModalWrapper: styled.article`
-    display: flex;
+    display: ${props => (props.isOpen ? 'flex' : 'none')};
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -76,6 +75,7 @@ const St = {
 
     border-radius: 1.2rem;
     background-color: ${({ theme }) => theme.color.white};
+    z-index: 99;
   `,
 
   ModalHeaderContent: styled.div`
