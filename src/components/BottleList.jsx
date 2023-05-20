@@ -3,8 +3,12 @@ import React from 'react';
 import { DATA } from '../data';
 import Bottle from './Bottle';
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { bottleAtom } from './../recoil/atoms/bottleAtom';
 
 const BottleList = () => {
+  const bottles = useRecoilValue(bottleAtom);
+  console.log(bottles);
   return (
     <BottleListWrapper>
       {DATA.map(({ userId, content }, index) => (
