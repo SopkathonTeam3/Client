@@ -1,4 +1,4 @@
-const colors = {
+const color = {
   blue: '#0089DB',
   white: '#FFFFFF',
   gray50: '#F2F4F6',
@@ -12,9 +12,9 @@ const colors = {
   black: '#000000',
 };
 
-const fontSize = {
+const text = {
   head0: 'font-size: 3.2rem; font-wight: 600; line-height: 3.8rem',
-  subtitle1: 'font-size:1.8rem; font-wight: 600; line-height: 2.0rem',
+  subtitle1: 'font-size:1.8rem; font-wight: 600; line-height: 2.4rem',
   body1: 'font-size:1.8rem; font-wight: 400; line-height: 2.0rem',
   body2: 'font-size:1.6rem; font-wight: 500; line-height: 2.0rem',
   body3: 'font-size:1.4rem; font-wight: 400; line-height: 1.8rem',
@@ -24,6 +24,6 @@ const fontSize = {
 };
 
 export const theme = {
-  colors,
-  fontSize,
+  color,
+  text,
 };
