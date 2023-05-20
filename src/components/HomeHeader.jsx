@@ -2,11 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 
 const HomeHeader = () => {
+  //링크 복사
+  const handleCopyClipBoard = async text => {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert('클립보드에 편지 전달 링크가 복사되었어요!');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <St.headerWrapper>
       <St.headerTop>
         <St.headerTitle>윤여진님의 바다</St.headerTitle>
-        <St.headerBtn>편지 요청하기</St.headerBtn>
+        <St.headerBtn onClick={() => handleCopyClipBoard(window.location.href)}>
+          편지 요청하기
+        </St.headerBtn>
       </St.headerTop>
       <St.headerContent>
         편지 열람까지 <St.dayHighLight>7</St.dayHighLight>일 남았어요
