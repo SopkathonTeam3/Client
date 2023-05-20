@@ -19,14 +19,14 @@ const St = {
   userPageWrapper: styled.section`
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     width: 100%;
+    height: 100vh;
   `,
   userInfoText: styled.div`
-    background-color: black;
+    margin: 81px;
+    color: ${({ theme }) => theme.color.black};
     & > p {
-      color: red;
+      ${({ theme }) => theme.text.subtitle1};
     }
   `,
   userNameInput: styled.input`
