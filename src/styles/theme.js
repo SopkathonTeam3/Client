@@ -13,14 +13,14 @@ const colors = {
 };
 
 const fontSize = {
-  head0: 'font-size: 3.2rem; font-wight: 600',
-  subtitle1: 'font-size:1.8rem; font-wight: 600',
-  body1: 'font-size:1.8rem; font-wight: 400',
-  body2: 'font-size:1.6rem; font-wight: 500',
-  body3: 'font-size:1.4rem; font-wight: 400',
-  body4: 'font-size:1.2rem; font-wight: 400',
-  caption2: 'font-size:1.2rem; font-wight: 500',
-  caption1: 'font-size:1.0rem; font-wight: 700',
+  head0: 'font-size: 3.2rem; font-wight: 600; line-height: 3.8rem',
+  subtitle1: 'font-size:1.8rem; font-wight: 600; line-height: 2.0rem',
+  body1: 'font-size:1.8rem; font-wight: 400; line-height: 2.0rem',
+  body2: 'font-size:1.6rem; font-wight: 500; line-height: 2.0rem',
+  body3: 'font-size:1.4rem; font-wight: 400; line-height: 1.8rem',
+  body4: 'font-size:1.2rem; font-wight: 400; line-height: 1.6rem',
+  caption2: 'font-size:1.2rem; font-wight: 500; line-height: 1.6rem',
+  caption1: 'font-size:1.0rem; font-wight: 700; line-height: 1.2rem',
 };
 
 export const theme = {
