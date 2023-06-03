@@ -1,20 +1,22 @@
 import styled from 'styled-components';
 import React from 'react';
-import { DATA } from '../data';
 import Bottle from './Bottle';
-import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { bottleAtom } from './../recoil/atoms/bottleAtom';
+import { useGetLetter } from '../recoil/useGetLetter';
 
 const BottleList = () => {
-  const bottles = useRecoilValue(bottleAtom);
+  const bottles = useRecoilValue(useGetLetter);
   console.log(bottles);
+  const bottlesData = bottles.data.posts;
+  console.log(bottlesData);
   return (
     <BottleListWrapper>
-      {DATA.map(({ userId, content }, index) => (
-        <Bottle key={userId} content={content} bottleId={index + 1}>
-          {' '}
-        </Bottle>
+      {bottlesData.map(({ firstAnswer, secondAnswer }, index) => (
+        <Bottle
+          key={index}
+          content1={firstAnswer}
+          content2={secondAnswer}
+          bottleId={index + 1}
+        ></Bottle>
       ))}
     </BottleListWrapper>
   );

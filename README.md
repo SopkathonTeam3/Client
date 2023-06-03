@@ -231,3 +231,7 @@
 * 변수명 : `카멜케이스` / 상수데이터 : `대문자` / Component명 :`파스칼`
 * 절대경로 사용 (`src` 기준)
 </details>
+
+
+## 🔥 구현영상
+[구현영상 링크](https://quasar-smelt-153.notion.site/3-eab7b57999584808b39b16549bac4644)
