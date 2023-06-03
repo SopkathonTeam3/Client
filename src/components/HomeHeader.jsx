@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useGetLetter } from '../lib/useGetLetter';
+
 import { useRecoilValue } from 'recoil';
 import { bottleAtom } from './../recoil/atoms/bottleAtom';
 
@@ -17,21 +18,34 @@ const HomeHeader = () => {
     }
   };
 
-  // 이름 & 남은 날짜 데이터 받아오기
-  const getHeaderData = async () => {
-    const data = await useGetLetter();
-    setUserName(data.userResponseDto.name);
-    setRemainDays(data.roomResponseDto.remainingDays);
-  };
+  // 데이터 통신 return이 안돼서 일단 atom에 저장 -> atom 값 가져오기
+  const { userResponseDto, roomResponseDto } = useRecoilValue(bottleAtom);
 
   useEffect(() => {
-    getHeaderData();
+    setUserName(userResponseDto.name);
+    setRemainDays(roomResponseDto.remainingDays);
   }, []);
+
+  // 이름 & 남은 날짜 데이터 받아오기
+  // const getHeaderData = async () => {
+  //   console.log('드렁옴');
+  //   const data2 = useGetLetter();
+  //   console.log(data2);
+
+  //   const data = await useGetLetter();
+  //   console.log(data, '?!?!?!?');
+  //   // setUserName(data.userResponseDto.name);
+  //   // setRemainDays(data.roomResponseDto.remainingDays);
+  // };
+
+  // useEffect(() => {
+  //   getHeaderData();
+  // }, []);
 
   return (
     <St.headerWrapper>
       <St.headerTop>
-        <St.headerTitle>윤{userName}님의 바다</St.headerTitle>
+        <St.headerTitle>{userName}님의 바다</St.headerTitle>
         <St.headerBtn onClick={() => handleCopyClipBoard(window.location.href)}>
           편지 요청하기
         </St.headerBtn>

@@ -1,13 +1,21 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import color1 from '../assets/img/color1.png';
 import color2 from '../assets/img/color2.png';
 import color3 from '../assets/img/color3.png';
+import { useNavigate } from 'react-router';
+import { usePostUser } from '../lib/usePostUser';
+import { useRecoilState } from 'recoil';
+import { userAtom } from '../recoil/atoms/bottleAtom';
 
-const Cusomcolor = () => {
-  const [ispick, setIsPick] = useState('');
-  const [picked, setPicked] = useState('');
+const CustomColor = () => {
+  const navigate = useNavigate();
+  const [ispick, setIsPick] = useState(false); //눌렀는지 여부
+  const [picked, setPicked] = useState(''); //누른바다
   const colorRef = useRef([]);
+  const userName = localStorage.getItem('userName');
+  const [userData, setUserData] = useState();
+  const [userInfo, setUserInfo] = useRecoilState(userAtom);
 
   useEffect(() => {
     colorRef.current = colorRef.current.slice(0, 3);
@@ -25,10 +33,44 @@ const Cusomcolor = () => {
     });
   };
 
+  const reqData = {
+    name: userName,
+    backgroundColorId: Number(picked.substr(-1)),
+  };
+
+  const postUserData = async () => {
+    const { userId, roomId } = await usePostUser(reqData);
+    if (userId && roomId) {
+      window.localStorage.removeItem('userName');
+      setUserInfo({ userId: userId, roomId: roomId });
+      navigate(`/main/${userId}/${roomId}`);
+    }
+    // setUserInfo({ userId: userId, roomId: roomId });
+    // console.log(response);
+    // setUserData(response); //3
+    // console.log(userData, '!!!'); //4
+    // console.log(userId, roomId);
+    // console.log('??? userInfo: ', userInfo);
+  };
+
+  const handleClickNext = () => {
+    // if (userName) {
+    //   window.localStorage.removeItem('userName');
+    //   postUserData();
+    //   console.log(data);
+    //   // console.log('성공 !!!!!'); //1
+    //   // console.log(userData, '???'); //2
+    //   // if (userId && roomId) {
+    //   //   navigate(`/main/${userId}/${roomId}`);
+    //   // }
+    // }
+    postUserData();
+  };
+
   return (
     <St.CustomPageWrapper>
       <St.CustomTitle>
-        <p>윤여진님의 </p>
+        <p>{userName}님의 </p>
         <p>바다를 골라주세요</p>
       </St.CustomTitle>
 
@@ -58,13 +100,14 @@ const Cusomcolor = () => {
           ref={el => (colorRef.current[2] = el)}
         />
       </St.ColorPickWrapper>
-
-      <St.NextBtn ispick={picked}>다음으로</St.NextBtn>
+      <St.NextBtn ispick={ispick} onClick={handleClickNext}>
+        다음으로
+      </St.NextBtn>
     </St.CustomPageWrapper>
   );
 };
 
-export default Cusomcolor;
+export default CustomColor;
 
 const St = {
   CustomPageWrapper: styled.section`

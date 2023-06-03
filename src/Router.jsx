@@ -1,6 +1,7 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import React from 'react';
+import CustomColor from './pages/CustomColor';
+import Main from './pages/Main';
 import UserPage from './pages/UserPage';
 import Main from './pages/Main';
 import ShareRequestModal from './components/modal/ShareRequestModal';
