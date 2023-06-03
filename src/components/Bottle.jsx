@@ -16,21 +16,30 @@ const Bottle = ({ userId, content1, content2, bottleId }) => {
   const handleOnclick = () => {
     setIsOpen(true);
   };
+
+  const handleModalClose = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <BottleContainer
-      bottleId={bottleId}
-      backgroundImage={backgroundImage}
-      rightMargin={rightMargin}
-      onClick={handleOnclick}
-    >
-      {bottleId === 1 && <PlusButton></PlusButton>}
-      <LetterModal
-        isOpen={isOpen}
+    <>
+      <BottleContainer
         bottleId={bottleId}
-        content1={content1}
-        content2={content2}
-      ></LetterModal>
-    </BottleContainer>
+        backgroundImage={backgroundImage}
+        rightMargin={rightMargin}
+        onClick={handleOnclick}
+      >
+        {bottleId === 1 && <PlusButton></PlusButton>}
+        <ModalWrapper>
+          <LetterModal
+            bottleId={bottleId}
+            content1={content1}
+            content2={content2}
+            isOpen={isOpen}
+          ></LetterModal>
+        </ModalWrapper>
+      </BottleContainer>
+    </>
   );
 };
 
@@ -53,4 +62,20 @@ const PlusButton = styled.button`
   z-index: 1;
   background: url(${PlusButtonImage});
 `;
+
+const ModalWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: auto;
+  height: auto;
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+`;
+
 export default Bottle;
