@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useGetLetter } from '../recoil/useGetLetter';
+import { useGetLetter } from '../lib/useGetLetter';
 import { useRecoilValue } from 'recoil';
 import { bottleAtom } from './../recoil/atoms/bottleAtom';
 
@@ -18,11 +18,14 @@ const HomeHeader = () => {
   };
 
   // 이름 & 남은 날짜 데이터 받아오기
-  const getAiosData = useRecoilValue(bottleAtom);
+  const getHeaderData = async () => {
+    const data = await useGetLetter();
+    setUserName(data.userResponseDto.name);
+    setRemainDays(data.roomResponseDto.remainingDays);
+  };
 
   useEffect(() => {
-    setUserName(getAiosData.data.userResponseDto.name);
-    setRemainDays(getAiosData.data.roomResponseDto.remainingDays);
+    getHeaderData();
   }, []);
 
   return (

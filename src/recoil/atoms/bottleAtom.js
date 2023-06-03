@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useGetLetter } from '../useGetLetter';
+import { useGetLetter } from '../../lib/useGetLetter';
 import { atom, selector } from 'recoil';
 
 export const bottleAtom = atom({
