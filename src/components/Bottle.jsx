@@ -4,16 +4,15 @@ import styled from 'styled-components';
 import BottleRight from './../assets/svgs/bottle_right_1.svg';
 import BottleLeft from './../assets/svgs/bottle_left_1.svg';
 import LetterModal from './modal/LetterModal';
-
+import PlusButtonImage from './../assets/svgs/plusButton.svg';
 import { useState, useEffect } from 'react';
-const Bottle = ({ userId, content, bottleId }) => {
+const Bottle = ({ userId, content1, content2, bottleId }) => {
   const backgroundImage = bottleId % 2 === 1 ? BottleLeft : BottleRight;
   const rightMargin = bottleId % 2 === 1 ? '0px' : '120px';
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    console.log(isOpen);
-  }, [isOpen]);
+  console.log(bottleId);
+  console.log(content1 + '---' + content2);
+  useEffect(() => {}, [isOpen]);
   const handleOnclick = () => {
     setIsOpen(true);
   };
@@ -24,27 +23,44 @@ const Bottle = ({ userId, content, bottleId }) => {
 
   return (
     <>
-      <BottleWrapper
+      <BottleContainer
         bottleId={bottleId}
         backgroundImage={backgroundImage}
         rightMargin={rightMargin}
         onClick={handleOnclick}
       >
+        {bottleId === 1 && <PlusButton></PlusButton>}
         <ModalWrapper>
-          <LetterModal isOpen={isOpen} handleModalClose={handleModalClose} />
+          <LetterModal
+            bottleId={bottleId}
+            content1={content1}
+            content2={content2}
+            isOpen={isOpen}
+          ></LetterModal>
         </ModalWrapper>
-      </BottleWrapper>
+      </BottleContainer>
     </>
   );
 };
 
-const BottleWrapper = styled.div`
+const BottleContainer = styled.div`
   display: flex;
-
-  width: 130px;
-  height: 237px;
+  position: relative;
+  width: 13rem;
+  height: 23.7rem;
   background-image: url(${props => props.backgroundImage});
   margin-top: ${props => props.rightMargin};
+`;
+
+const PlusButton = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  width: 4.5rem;
+  height: 4.4rem;
+
+  z-index: 1;
+  background: url(${PlusButtonImage});
 `;
 
 const ModalWrapper = styled.div`
@@ -61,4 +77,5 @@ const ModalWrapper = styled.div`
   top: 0;
   bottom: 0;
 `;
+
 export default Bottle;
