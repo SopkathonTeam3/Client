@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router';
 
 const UserPage = () => {
   const [userName, setUserName] = useState();
   const [isClickable, setIsClickable] = useState();
   const inputRef = useRef();
-  const btnRef = useRef();
+  const navigate = useNavigate();
 
   const handleInputChange = () => {
     if (inputRef !== '') {
@@ -16,6 +17,7 @@ const UserPage = () => {
 
   const handleUserSubmit = () => {
     userName && localStorage.setItem('userName', userName);
+    navigate('/custom');
   };
 
   return (
