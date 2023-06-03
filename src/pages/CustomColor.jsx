@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import color1 from '../assets/img/color1.png';
 import color2 from '../assets/img/color2.png';
 import color3 from '../assets/img/color3.png';
+import { useNavigate } from 'react-router';
 
 const CustomColor = () => {
+  const navigate = useNavigate();
   const [ispick, setIsPick] = useState(false); //눌렀는지 여부
   const [picked, setPicked] = useState(''); //누른바다
   const colorRef = useRef([]);
+  const userName = localStorage.getItem('userName');
 
   useEffect(() => {
     colorRef.current = colorRef.current.slice(0, 3);
@@ -26,10 +29,17 @@ const CustomColor = () => {
   };
   // console.log(picked, '!!!!');
 
+  const handleClickNext = () => {
+    if (userName) {
+      window.localStorage.removeItem('userName');
+      navigate('/main/1/1');
+    }
+  };
+
   return (
     <St.CustomPageWrapper>
       <St.CustomTitle>
-        <p>윤여진님의 </p>
+        <p>{userName}님의 </p>
         <p>바다를 골라주세요</p>
       </St.CustomTitle>
 
@@ -59,7 +69,9 @@ const CustomColor = () => {
           ref={el => (colorRef.current[2] = el)}
         />
       </St.ColorPickWrapper>
-      <St.NextBtn ispick={ispick}>다음으로</St.NextBtn>
+      <St.NextBtn ispick={ispick} onClick={handleClickNext}>
+        다음으로
+      </St.NextBtn>
     </St.CustomPageWrapper>
   );
 };
