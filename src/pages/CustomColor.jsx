@@ -1,12 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import color1 from '../assets/img/color1.png';
 import color2 from '../assets/img/color2.png';
 import color3 from '../assets/img/color3.png';
 
-const Cusomcolor = () => {
-  const [ispick, setIsPick] = useState('');
-  const [picked, setPicked] = useState('');
+const CustomColor = () => {
+  const [ispick, setIsPick] = useState(false); //눌렀는지 여부
+  const [picked, setPicked] = useState(''); //누른바다
   const colorRef = useRef([]);
 
   useEffect(() => {
@@ -24,6 +24,7 @@ const Cusomcolor = () => {
       }
     });
   };
+  // console.log(picked, '!!!!');
 
   return (
     <St.CustomPageWrapper>
@@ -58,13 +59,12 @@ const Cusomcolor = () => {
           ref={el => (colorRef.current[2] = el)}
         />
       </St.ColorPickWrapper>
-
-      <St.NextBtn ispick={picked}>다음으로</St.NextBtn>
+      <St.NextBtn ispick={ispick}>다음으로</St.NextBtn>
     </St.CustomPageWrapper>
   );
 };
 
-export default Cusomcolor;
+export default CustomColor;
 
 const St = {
   CustomPageWrapper: styled.section`
