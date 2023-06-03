@@ -4,39 +4,53 @@ import styled from 'styled-components';
 import BottleRight from './../assets/svgs/bottle_right_1.svg';
 import BottleLeft from './../assets/svgs/bottle_left_1.svg';
 import LetterModal from './modal/LetterModal';
-
+import PlusButtonImage from './../assets/svgs/plusButton.svg';
 import { useState, useEffect } from 'react';
-const Bottle = ({ userId, content, bottleId }) => {
+const Bottle = ({ userId, content1, content2, bottleId }) => {
   const backgroundImage = bottleId % 2 === 1 ? BottleLeft : BottleRight;
   const rightMargin = bottleId % 2 === 1 ? '0px' : '120px';
   const [isOpen, setIsOpen] = useState(false);
-
+  console.log(bottleId);
+  console.log(content1 + '---' + content2);
   useEffect(() => {}, [isOpen]);
   const handleOnclick = () => {
     setIsOpen(true);
   };
   return (
-    <>
-      <BottleWrapper
+    <BottleContainer
+      bottleId={bottleId}
+      backgroundImage={backgroundImage}
+      rightMargin={rightMargin}
+      onClick={handleOnclick}
+    >
+      {bottleId === 1 && <PlusButton></PlusButton>}
+      <LetterModal
+        isOpen={isOpen}
         bottleId={bottleId}
-        backgroundImage={backgroundImage}
-        rightMargin={rightMargin}
-        onClick={handleOnclick}
-      >
-        <LetterModal isOpen={isOpen}> </LetterModal>
-      </BottleWrapper>
-    </>
+        content1={content1}
+        content2={content2}
+      ></LetterModal>
+    </BottleContainer>
   );
 };
 
-const BottleWrapper = styled.div`
+const BottleContainer = styled.div`
   display: flex;
-
-  width: 130px;
-  height: 237px;
+  position: relative;
+  width: 13rem;
+  height: 23.7rem;
   background-image: url(${props => props.backgroundImage});
   margin-top: ${props => props.rightMargin};
+`;
 
-  /* margin-right: 30px; */
+const PlusButton = styled.button`
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  width: 4.5rem;
+  height: 4.4rem;
+
+  z-index: 1;
+  background: url(${PlusButtonImage});
 `;
 export default Bottle;
