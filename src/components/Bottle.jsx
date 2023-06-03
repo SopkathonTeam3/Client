@@ -10,11 +10,12 @@ const Bottle = ({ userId, content1, content2, bottleId }) => {
   const backgroundImage = bottleId % 2 === 1 ? BottleLeft : BottleRight;
   const rightMargin = bottleId % 2 === 1 ? '0px' : '120px';
   const [isOpen, setIsOpen] = useState(false);
-  console.log(bottleId);
-  console.log(content1 + '---' + content2);
+  // console.log(bottleId);
+  // console.log(content1 + '---' + content2);
   useEffect(() => {}, [isOpen]);
   const handleOnclick = () => {
     setIsOpen(true);
+    console.log(bottleId);
   };
 
   const handleModalClose = () => {
@@ -71,6 +72,7 @@ const ModalWrapper = styled.div`
   width: auto;
   height: auto;
   position: fixed;
+  z-index: 999;
 
   left: 0;
   right: 0;
