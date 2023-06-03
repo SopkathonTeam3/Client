@@ -12,14 +12,18 @@ const BottleList = () => {
   console.log(bottlesData);
   return (
     <BottleListWrapper>
-      {bottlesData.map(({ firstAnswer, secondAnswer }, index) => (
-        <Bottle
-          key={index}
-          content1={firstAnswer}
-          content2={secondAnswer}
-          bottleId={index + 1}
-        ></Bottle>
-      ))}
+      {bottlesData ? (
+        bottlesData.map(({ firstAnswer, secondAnswer }, index) => (
+          <Bottle
+            key={index}
+            content1={firstAnswer}
+            content2={secondAnswer}
+            bottleId={index + 1}
+          ></Bottle>
+        ))
+      ) : (
+        <></>
+      )}
     </BottleListWrapper>
   );
 };

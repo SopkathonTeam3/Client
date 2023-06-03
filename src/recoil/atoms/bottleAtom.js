@@ -9,8 +9,8 @@ export const bottleAtom = atom({
   key: 'bottleState',
   default: selector({
     key: 'bottleAtom/default',
-    get: () => {
-      const bottles = useGetLetter();
+    get: async () => {
+      const bottles = await useGetLetter();
       console.log(bottles);
       return bottles;
     },
