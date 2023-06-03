@@ -80,7 +80,7 @@ const St = {
     width: 127px;
     height: 44px;
     border-radius: 80px;
-    padding: 12px 20px;
+    padding: 12px 10px;
     background-color: ${({ theme }) => theme.color.black};
     color: ${({ theme }) => theme.color.white};
   `,

@@ -13,16 +13,16 @@ const color = {
 };
 
 const text = {
-  head0: 'font-size: 3.2rem; font-wight: 600; line-height: 3.8rem',
-  subtitle0: 'font-weight: 700; font-size: 2.8rem; line-height: 4rem;',
-  subtitle1: 'font-size: 1.8rem; font-wight: 600; line-height: 2.1rem',
-  subtitle2: 'font-size: 2rem; font-wight: 700; line-height: 2.8rem',
-  body1: 'font-size: 1.8rem; font-wight: 400; line-height: 2.7rem',
-  body2: 'font-size: 1.6rem; font-wight: 500; line-height: 1.9rem',
-  body3: 'font-size: 1.4rem; font-wight: 400; line-height: 1.7rem',
-  body4: 'font-size: 1.2rem; font-wight: 400; line-height: 1.4rem',
-  caption2: 'font-size: 1.2rem; font-wight: 500; line-height: 1.4rem',
-  caption1: 'font-size: 1.0rem; font-wight: 700; line-height: 1.2rem',
+  head0: 'font-size: 3.2rem; font-weight: 600; line-height: 3.8rem',
+  subtitle0: 'font-weight: 700; font-size: 2.8rem; line-height: 3.8rem;',
+  subtitle1: 'font-size: 1.8rem; font-weight: 600; line-height: 2.0rem',
+  subtitle2: 'font-size: 2.0rem; font-weight: 700; line-height: 2.8rem',
+  body1: 'font-size: 1.8rem; font-weight: 400; line-height: 2.0rem',
+  body2: 'font-size: 1.6rem; font-weight: 500; line-height: 2.0rem',
+  body3: 'font-size: 1.4rem; font-weight: 400; line-height: 1.8rem',
+  body4: 'font-size: 1.2rem; font-weight: 400; line-height: 1.6rem',
+  caption2: 'font-size: 1.2rem; font-weight: 500; line-height: 1.6rem',
+  caption1: 'font-size: 1.0rem; font-weight: 700; line-height: 1.2rem',
 };
 
 export const theme = {

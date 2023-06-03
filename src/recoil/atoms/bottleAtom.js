@@ -15,15 +15,6 @@ export const bottleAtom = atom({
       return bottles;
     },
   }),
-  // default: [
-  // {
-  //   no: "",
-  //   author: "default",
-  //   material: "",
-  //   name: "",
-  //   coverThumb: "",
-  // },
-  // ],
 });
 
 export const userAtom = atom({
