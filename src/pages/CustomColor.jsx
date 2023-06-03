@@ -4,6 +4,7 @@ import color1 from '../assets/img/color1.png';
 import color2 from '../assets/img/color2.png';
 import color3 from '../assets/img/color3.png';
 import { useNavigate } from 'react-router';
+import { usePostUser } from '../lib/usePostUser';
 
 const CustomColor = () => {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ const CustomColor = () => {
   const [picked, setPicked] = useState(''); //누른바다
   const colorRef = useRef([]);
   const userName = localStorage.getItem('userName');
+  const [userIdData, setUserIdData] = useState();
+  const [roomIdData, setRoomIdData] = useState();
 
   useEffect(() => {
     colorRef.current = colorRef.current.slice(0, 3);
@@ -19,7 +22,7 @@ const CustomColor = () => {
   const handleSelectColor = e => {
     const selectedColor = e.target.alt;
     setIsPick(true);
-    setPicked(selectedColor);
+    setPicked(Number(selectedColor.substr(-1)));
 
     colorRef.current.forEach(ref => {
       if (ref.alt !== selectedColor) {
@@ -29,10 +32,23 @@ const CustomColor = () => {
   };
   // console.log(picked, '!!!!');
 
+  const reqData = {
+    name: userName,
+    backgroundColorId: picked,
+  };
+
+  const postUserData = async () => {
+    const { userId, RoomId } = await usePostUser(reqData);
+    console.log(userId, RoomId);
+    setUserIdData(userId);
+    setRoomIdData(roomId);
+  };
+
   const handleClickNext = () => {
     if (userName) {
       window.localStorage.removeItem('userName');
-      navigate('/main/1/1');
+      postUserData();
+      console.log('성공 !!!!!');
     }
   };
 
