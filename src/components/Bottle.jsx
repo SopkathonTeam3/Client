@@ -11,10 +11,17 @@ const Bottle = ({ userId, content, bottleId }) => {
   const rightMargin = bottleId % 2 === 1 ? '0px' : '120px';
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {}, [isOpen]);
+  useEffect(() => {
+    console.log(isOpen);
+  }, [isOpen]);
   const handleOnclick = () => {
     setIsOpen(true);
   };
+
+  const handleModalClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <BottleWrapper
@@ -23,7 +30,9 @@ const Bottle = ({ userId, content, bottleId }) => {
         rightMargin={rightMargin}
         onClick={handleOnclick}
       >
-        <LetterModal isOpen={isOpen}> </LetterModal>
+        <ModalWrapper>
+          <LetterModal isOpen={isOpen} handleModalClose={handleModalClose} />
+        </ModalWrapper>
       </BottleWrapper>
     </>
   );
@@ -36,7 +45,20 @@ const BottleWrapper = styled.div`
   height: 237px;
   background-image: url(${props => props.backgroundImage});
   margin-top: ${props => props.rightMargin};
+`;
 
-  /* margin-right: 30px; */
+const ModalWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: auto;
+  height: auto;
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 `;
 export default Bottle;

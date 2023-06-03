@@ -3,30 +3,48 @@ import styled from 'styled-components';
 import ModalClose from '../../assets/svgs/modal_close.svg';
 import Message from '../../assets/svgs/modal_message.svg';
 
-const LetterModal = ({ isOpen }) => {
-  const [answerOne, setAnswerOne] = useState('');
-  const [answerTwo, setAnswerTwo] = useState('');
+const LetterModal = ({ isOpen, handleModalClose }) => {
+  console.log(isOpen);
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [answerOne, setAnswerone] = useState('');
+  const [answerTwo, setAnswertwo] = useState('');
 
-  const onAnswerOne = e => {
-    setAnswerOne(e.target.value);
-  };
-  const onAnswerTwo = e => {
-    setAnswerTwo(e.target.value);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
+  const handleOne = e => {
+    setAnswerone(e.target.value);
   };
 
-  const onClick = () => {
-    console.log('here');
+  const handleTwo = e => {
+    setAnswertwo(e.target.value);
   };
+
+  const handleAnswer = () => {
+    if (answerOne.length >= 1 && answerTwo.length >= 1) {
+      setIsAnswered(true);
+    } else {
+      setIsAnswered(false);
+    }
+  };
+
+  const handleClose = () => {
+    handleModalClose();
+    console.log(isOpen);
+  };
+
+  useEffect(() => {
+    handleAnswer();
+  }, [answerOne, answerTwo]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      handleModalClose();
+    }
+  }, [isOpen]);
   return (
     <St.ModalWrapper isOpen={isOpen}>
       <St.ModalHeader>
         <St.ModalHeaderContent>
           <St.ModalIconWrapper>
-            <CloseModal onClick={closeModal} src={ModalClose} alt="modalClose" />
+            <CloseModal src={ModalClose} alt="modalClose" />
           </St.ModalIconWrapper>
 
           <MessageIcon src={Message} alt="messageIcon" />
@@ -40,7 +58,7 @@ const LetterModal = ({ isOpen }) => {
         <St.ModalQuestion>Q.첫인상은 어땠나요?</St.ModalQuestion>
         <p>
           <St.ModalAnswerBox
-            onChange={onAnswerOne}
+            onChange={handleOne}
             maxLength="50"
             placeholder="50자 내로 작성해주세요"
           />
@@ -48,12 +66,12 @@ const LetterModal = ({ isOpen }) => {
 
         <St.ModalQuestion>Q.의외의 지점은 무엇이었나요?</St.ModalQuestion>
         <St.ModalAnswerBox
-          onChange={onAnswerTwo}
+          onChange={handleTwo}
           maxLength="50"
           placeholder="50자 내로 작성해주세요"
         />
       </St.ModalMain>
-      <St.ModalBtn onClick={onClick} disabled={answerOne.length < 1 && answerTwo.length < 1}>
+      <St.ModalBtn isAnswered={isAnswered} onClick={handleModalClose}>
         편지 띄우기
       </St.ModalBtn>
     </St.ModalWrapper>
@@ -67,14 +85,15 @@ const St = {
     display: ${props => (props.isOpen ? 'flex' : 'none')};
 
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
 
     width: 31.9rem;
     height: 61.6rem;
 
     border-radius: 1.2rem;
     background-color: ${({ theme }) => theme.color.white};
+
     z-index: 99;
   `,
 
@@ -92,10 +111,11 @@ const St = {
     align-items: flex-start;
     background-color: #edd3b8;
 
-    width: 100%;
-    height: 14.4rem;
     border-top-right-radius: 1.2rem;
     border-top-left-radius: 1.2rem;
+
+    width: 100%;
+    height: 14.4rem;
 
     margin-bottom: 2.8rem;
   `,
@@ -117,6 +137,7 @@ const St = {
   ModalMain: styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
   `,
 
   ModalAnswerBox: styled.textarea`
@@ -133,8 +154,9 @@ const St = {
     margin-bottom: 2.4rem;
     padding: 2rem;
     resize: none;
-    ${({ theme }) => theme.text.body2};
+    font-style: ${({ theme }) => theme.text.body2};
   `,
+
   ModalQuestion: styled.h2`
     color: ${({ theme }) => theme.color.gray700};
     ${({ theme }) => theme.text.subtitle1};
@@ -149,13 +171,13 @@ const St = {
     width: 31.9rem;
     height: 6.9rem;
 
-    background-color: ${({ theme }) => theme.color.black};
+    border-bottom-right-radius: 1.2rem;
+    border-bottom-left-radius: 1.2rem;
+    background-color: ${({ isAnswered, theme }) =>
+      isAnswered ? theme.color.black : theme.color.gray100};
 
     color: ${({ theme }) => theme.color.white};
     ${({ theme }) => theme.text.subtitle1};
-
-    border-bottom-left-radius: 1.2rem;
-    border-bottom-right-radius: 1.2rem;
   `,
 };
 
