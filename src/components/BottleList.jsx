@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import React from 'react';
 import Bottle from './Bottle';
-import { useGetLetter } from '../recoil/useGetLetter';
+import { useGetLetter } from '../lib/useGetLetter';
+import { bottleAtom } from '../recoil/atoms/bottleAtom';
+import { useRecoilValue } from 'recoil';
 
 const BottleList = () => {
-  const bottles = useRecoilValue(useGetLetter);
+  const bottles = useRecoilValue(bottleAtom);
   console.log(bottles);
-  const bottlesData = bottles.data.posts;
+  const bottlesData = bottles.posts;
   console.log(bottlesData);
   return (
     <BottleListWrapper>

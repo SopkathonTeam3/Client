@@ -35,9 +35,9 @@ const LetterModal = ({ isOpen, handleModalClose }) => {
   }, [answerOne, answerTwo]);
 
   useEffect(() => {
-    if (!isOpen) {
-      handleModalClose();
-    }
+    // if (!isOpen) {
+    //   handleModalClose();
+    // }
   }, [isOpen]);
   return (
     <St.ModalWrapper isOpen={isOpen}>
