@@ -46,17 +46,17 @@ const St = {
   `,
   ImgWrapper: styled.div`
     display: flex;
-    width: 7rem;
-    height: 10rem;
-    margin-bottom: 1.2rem;
-    margin-top: 12.8rem;
+    width: 70px;
+    height: 110px;
+    margin-bottom: 12px;
+    margin-top: 128px;
   `,
   Title: styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    margin-bottom: 0.8rem;
+    margin-bottom: 8px;
 
     & > p {
       ${({ theme }) => theme.text.subtitle0};
@@ -67,7 +67,7 @@ const St = {
     flex-direction: column;
     align-items: center;
 
-    margin-bottom: 3.6rem;
+    margin-bottom: 36px;
 
     & > p {
       ${({ theme }) => theme.text.subtitle2.body1};
@@ -79,14 +79,14 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    width: 16.9rem;
-    height: 6.4rem;
+    width: 169px;
+    height: 64px;
 
     background-color: ${({ theme }) => theme.color.black};
 
     border-radius: 40px;
 
-    margin-bottom: 8rem;
+    margin-bottom: 80px;
     & {
       ${({ theme }) => theme.text.subtitle2};
       color: ${({ theme }) => theme.color.white};
