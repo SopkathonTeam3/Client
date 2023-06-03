@@ -2,8 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import bottle from '../assets/img/onBoardingBottle.png';
 import float from '../assets/img/float.png';
+import { useNavigate } from 'react-router-dom';
 
 const OnBoarding = () => {
+  const navigate = useNavigate();
+
+  const handleStart = () => {
+    navigate('/user');
+  };
+
   return (
     <>
       <St.Wrapper>
@@ -19,7 +26,7 @@ const OnBoarding = () => {
           <p>내 바다를 유리병으로 채워보아요</p>
         </St.Subtitle>
 
-        <St.MakeBtn>내 바다 만들기</St.MakeBtn>
+        <St.MakeBtn onClick={handleStart}>내 바다 만들기</St.MakeBtn>
 
         <img src={float} alt="바닥" />
       </St.Wrapper>
