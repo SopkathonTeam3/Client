@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { useGetLetter } from '../../lib/useGetLetter';
 import { atom, selector } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 
 export const bottleAtom = atom({
   key: 'bottleState',
@@ -21,4 +24,13 @@ export const bottleAtom = atom({
   //   coverThumb: "",
   // },
   // ],
+});
+
+export const userAtom = atom({
+  key: 'userAtom',
+  default: {
+    userId: 0,
+    roomId: 0,
+  },
+  effects_UNSTABLE: [persistAtom],
 });

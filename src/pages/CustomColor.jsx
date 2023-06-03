@@ -5,6 +5,8 @@ import color2 from '../assets/img/color2.png';
 import color3 from '../assets/img/color3.png';
 import { useNavigate } from 'react-router';
 import { usePostUser } from '../lib/usePostUser';
+import { useRecoilState } from 'recoil';
+import { userAtom } from '../recoil/atoms/bottleAtom';
 
 const CustomColor = () => {
   const navigate = useNavigate();
@@ -12,8 +14,8 @@ const CustomColor = () => {
   const [picked, setPicked] = useState(''); //누른바다
   const colorRef = useRef([]);
   const userName = localStorage.getItem('userName');
-  const [userIdData, setUserIdData] = useState();
-  const [roomIdData, setRoomIdData] = useState();
+  const [userData, setUserData] = useState();
+  const [userInfo, setUserInfo] = useRecoilState(userAtom);
 
   useEffect(() => {
     colorRef.current = colorRef.current.slice(0, 3);
@@ -22,7 +24,7 @@ const CustomColor = () => {
   const handleSelectColor = e => {
     const selectedColor = e.target.alt;
     setIsPick(true);
-    setPicked(Number(selectedColor.substr(-1)));
+    setPicked(selectedColor);
 
     colorRef.current.forEach(ref => {
       if (ref.alt !== selectedColor) {
@@ -30,26 +32,39 @@ const CustomColor = () => {
       }
     });
   };
-  // console.log(picked, '!!!!');
 
   const reqData = {
     name: userName,
-    backgroundColorId: picked,
+    backgroundColorId: Number(picked.substr(-1)),
   };
 
   const postUserData = async () => {
-    const { userId, RoomId } = await usePostUser(reqData);
-    console.log(userId, RoomId);
-    setUserIdData(userId);
-    setRoomIdData(roomId);
+    const { userId, roomId } = await usePostUser(reqData);
+    if (userId && roomId) {
+      window.localStorage.removeItem('userName');
+      setUserInfo({ userId: userId, roomId: roomId });
+      navigate(`/main/${userId}/${roomId}`);
+    }
+    // setUserInfo({ userId: userId, roomId: roomId });
+    // console.log(response);
+    // setUserData(response); //3
+    // console.log(userData, '!!!'); //4
+    // console.log(userId, roomId);
+    // console.log('??? userInfo: ', userInfo);
   };
 
   const handleClickNext = () => {
-    if (userName) {
-      window.localStorage.removeItem('userName');
-      postUserData();
-      console.log('성공 !!!!!');
-    }
+    // if (userName) {
+    //   window.localStorage.removeItem('userName');
+    //   postUserData();
+    //   console.log(data);
+    //   // console.log('성공 !!!!!'); //1
+    //   // console.log(userData, '???'); //2
+    //   // if (userId && roomId) {
+    //   //   navigate(`/main/${userId}/${roomId}`);
+    //   // }
+    // }
+    postUserData();
   };
 
   return (
