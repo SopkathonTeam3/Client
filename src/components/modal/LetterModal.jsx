@@ -2,8 +2,13 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ModalClose from '../../assets/svgs/modal_close.svg';
 import Message from '../../assets/svgs/modal_message.svg';
-
-const LetterModal = ({ isOpen }) => {
+/* isOpen을 제어받는 것보다 이칭구를 제어하는 함수를 
+props로 보내서 closeModal로 state를 바꿔주는게 직관적인 사용법이야! 
+다만, 이게 Bottle의 자식 컴포넌트에서 부모 컴포넌트의 state를 바꿔주는 거라 
+이벤트 버블링 이라는 현상때문에 그냥 setIsOpen을 실행하면, 부모 컴포넌트에 만들어져 있는 이벤트가 작동하게 되어서
+결국에는 Bottle의 onClick 함수가 실행되어버려! 
+그래서 우리는 이 전파를 막기 위해 e.stopPropagation 을 실행시킨뒤, setIsOpen을 사용해야해! */
+const LetterModal = ({ setIsOpen }) => {
   const [answerOne, setAnswerOne] = useState('');
   const [answerTwo, setAnswerTwo] = useState('');
 
@@ -14,7 +19,9 @@ const LetterModal = ({ isOpen }) => {
     setAnswerTwo(e.target.value);
   };
 
-  const closeModal = () => {
+  const closeModal = e => {
+    console.log('닫아!');
+    e.stopPropagation();
     setIsOpen(false);
   };
 
@@ -22,7 +29,7 @@ const LetterModal = ({ isOpen }) => {
     console.log('here');
   };
   return (
-    <St.ModalWrapper isOpen={isOpen}>
+    <St.ModalWrapper>
       <St.ModalHeader>
         <St.ModalHeaderContent>
           <St.ModalIconWrapper>
@@ -64,7 +71,8 @@ export default LetterModal;
 
 const St = {
   ModalWrapper: styled.article`
-    display: ${props => (props.isOpen ? 'flex' : 'none')};
+    display: flex;
+    position: absolute;
 
     flex-direction: column;
     justify-content: center;
