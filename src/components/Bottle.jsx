@@ -10,26 +10,27 @@ const Bottle = ({ userId, content1, content2, bottleId }) => {
   const backgroundImage = bottleId % 2 === 1 ? BottleLeft : BottleRight;
   const rightMargin = bottleId % 2 === 1 ? '0px' : '120px';
   const [isOpen, setIsOpen] = useState(false);
-  console.log(bottleId);
-  console.log(content1 + '---' + content2);
-  useEffect(() => {}, [isOpen]);
+
   const handleOnclick = () => {
+    console.log(bottleId, 'id입니다');
     setIsOpen(true);
   };
+
   return (
     <BottleContainer
-      bottleId={bottleId}
-      backgroundImage={backgroundImage}
-      rightMargin={rightMargin}
+      backgroundimage={backgroundImage}
+      rightmargin={rightMargin}
       onClick={handleOnclick}
     >
       {bottleId === 1 && <PlusButton></PlusButton>}
-      <LetterModal
-        isOpen={isOpen}
-        bottleId={bottleId}
-        content1={content1}
-        content2={content2}
-      ></LetterModal>
+      {isOpen && (
+        <LetterModal
+          setIsOpen={setIsOpen}
+          bottleId={bottleId}
+          content1={content1}
+          content2={content2}
+        />
+      )}
     </BottleContainer>
   );
 };
@@ -39,8 +40,8 @@ const BottleContainer = styled.div`
   position: relative;
   width: 13rem;
   height: 23.7rem;
-  background-image: url(${props => props.backgroundImage});
-  margin-top: ${props => props.rightMargin};
+  background-image: url(${props => props.backgroundimage});
+  margin-top: ${props => props.rightmargin};
 `;
 
 const PlusButton = styled.button`
