@@ -10,37 +10,31 @@ const Bottle = ({ userId, content1, content2, bottleId }) => {
   const backgroundImage = bottleId % 2 === 1 ? BottleLeft : BottleRight;
   const rightMargin = bottleId % 2 === 1 ? '0px' : '120px';
   const [isOpen, setIsOpen] = useState(false);
-  // console.log(bottleId);
-  // console.log(content1 + '---' + content2);
-  useEffect(() => {}, [isOpen]);
+
   const handleOnclick = () => {
+    console.log(bottleId, 'id입니다');
     setIsOpen(true);
     console.log(bottleId);
   };
 
-  const handleModalClose = () => {
-    setIsOpen(false);
-  };
-
   return (
-    <>
-      <BottleContainer
-        bottleId={bottleId}
-        backgroundImage={backgroundImage}
-        rightMargin={rightMargin}
-        onClick={handleOnclick}
-      >
-        {bottleId === 1 && <PlusButton></PlusButton>}
+    <BottleContainer
+      backgroundimage={backgroundImage}
+      rightmargin={rightMargin}
+      onClick={handleOnclick}
+    >
+      {bottleId === 1 && <PlusButton></PlusButton>}
+      {isOpen && (
         <ModalWrapper>
           <LetterModal
+            setIsOpen={setIsOpen}
             bottleId={bottleId}
             content1={content1}
             content2={content2}
-            isOpen={isOpen}
-          ></LetterModal>
+          />
         </ModalWrapper>
-      </BottleContainer>
-    </>
+      )}
+    </BottleContainer>
   );
 };
 
@@ -49,8 +43,10 @@ const BottleContainer = styled.div`
   position: relative;
   width: 13rem;
   height: 23.7rem;
-  background-image: url(${props => props.backgroundImage});
-  margin-top: ${props => props.rightMargin};
+  background-image: url(${props => props.backgroundimage});
+  margin-top: ${props => props.rightmargin};
+
+  cursor: pointer;
 `;
 
 const PlusButton = styled.button`
@@ -72,12 +68,14 @@ const ModalWrapper = styled.div`
   width: auto;
   height: auto;
   position: fixed;
-  z-index: 999;
+  z-index: 3;
 
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
+
+  cursor: auto;
 `;
 
 export default Bottle;

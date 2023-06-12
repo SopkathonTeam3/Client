@@ -1,4 +1,4 @@
-import { client } from './axios';
+import { client } from '../../lib/axios';
 
 export const usePostUser = async reqData => {
   try {
