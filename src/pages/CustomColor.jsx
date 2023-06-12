@@ -4,7 +4,7 @@ import color1 from '../assets/img/color1.png';
 import color2 from '../assets/img/color2.png';
 import color3 from '../assets/img/color3.png';
 import { useNavigate } from 'react-router';
-import { usePostUser } from '../lib/usePostUser';
+import { usePostUser } from '../utils/apis/usePostUser';
 import { useRecoilState } from 'recoil';
 import { userAtom } from '../recoil/atoms/bottleAtom';
 

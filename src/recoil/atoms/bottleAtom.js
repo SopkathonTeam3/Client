@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useGetLetter } from '../../lib/useGetLetter';
+import { useGetLetter } from '../../utils/apis/useGetLetter';
 import { atom, selector } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 

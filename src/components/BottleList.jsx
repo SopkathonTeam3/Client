@@ -18,10 +18,9 @@ const BottleList = () => {
     if (data) {
       setBottles(data.data.posts);
       setDday(data.data.roomResponseDto.remainingDays);
-      console.log(data);
     }
   };
-
+  console.log(bottles);
   // 처음 렌더링 될대 호출하면 되겠죠!
   useEffect(() => {
     getBottleData();
@@ -29,13 +28,11 @@ const BottleList = () => {
   // 그리고  < /> 요렇게 닫힌태그로 해주면 간결해지겠지!
 
   return (
-    <BottleListWrapper>
+    <BottleListWrapper bottle={bottles}>
       <Bottle bottleId={1} content1="" content2="" />
-      {bottles &&
-        dDay <= 0 &&
-        bottles.map(({ firstAnswer, secondAnswer }, index) => (
-          <Bottle key={index} content1={firstAnswer} content2={secondAnswer} bottleId={index + 2} />
-        ))}
+      {bottles?.map(({ firstAnswer, secondAnswer }, index) => (
+        <Bottle key={index} content1={firstAnswer} content2={secondAnswer} bottleId={index + 2} />
+      ))}
     </BottleListWrapper>
   );
 };
@@ -43,7 +40,7 @@ const BottleList = () => {
 const BottleListWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 550px;
+  height: ${props => (props.bottle.length < 2 ? '550px' : 'auto')};
   margin: 0px 16px;
   padding: 20px 30px;
   background-image: linear-gradient(161.58deg, #9a94fd 0%, #0089db 31.02%, #0056ba 78.45%);

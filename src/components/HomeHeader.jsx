@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useGetLetter } from '../lib/useGetLetter';
+import { useGetLetter } from '../utils/apis/useGetLetter';
 
 import { useRecoilValue } from 'recoil';
 import { bottleAtom } from './../recoil/atoms/bottleAtom';
@@ -20,7 +20,7 @@ const HomeHeader = () => {
 
   // 데이터 통신 return이 안돼서 일단 atom에 저장 -> atom 값 가져오기
   const { userResponseDto, roomResponseDto } = useRecoilValue(bottleAtom);
-
+  console.log(userResponseDto, roomResponseDto);
   useEffect(() => {
     setUserName(userResponseDto.name);
     setRemainDays(roomResponseDto.remainingDays);

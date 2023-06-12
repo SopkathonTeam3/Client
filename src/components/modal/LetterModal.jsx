@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ModalClose from '../../assets/svgs/modal_close.svg';
 import Message from '../../assets/svgs/modal_message.svg';
+
+import { postLetter } from '../../utils/apis/postLetter';
+import { useParams } from 'react-router-dom';
 /* isOpen을 제어받는 것보다 이칭구를 제어하는 함수를
 props로 보내서 closeModal로 state를 바꿔주는게 직관적인 사용법이야!
 다만, 이게 Bottle의 자식 컴포넌트에서 부모 컴포넌트의 state를 바꿔주는 거라
@@ -13,6 +16,8 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
   const [answerTwo, setAnswerTwo] = useState(content2);
   const [isAnswered, setIsAnswered] = useState(false);
   const [readOnly, setReadOnly] = useState(true);
+  const { userid, roomid } = useParams();
+
   const handleOne = e => {
     setAnswerOne(e.target.value);
   };
@@ -31,10 +36,15 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
   };
   const closeModal = e => {
     console.log('닫아!');
-    e.stopPropagation();
     setIsOpen(false);
+    e.stopPropagation();
   };
 
+  const createLetter = e => {
+    postLetter(userid, roomid, answerOne, answerTwo);
+    closeModal(e);
+    window.location.replace(`/main/${userid}/${roomid}`);
+  };
   useEffect(() => {
     handleAnswer();
     console.log(isAnswered);
@@ -81,7 +91,7 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
           readOnly={readOnly}
         />
       </St.ModalMain>
-      <St.ModalBtn isanswered={isAnswered.toString()} onClick={closeModal}>
+      <St.ModalBtn isanswered={isAnswered.toString()} onClick={createLetter}>
         편지 띄우기
       </St.ModalBtn>
     </St.ModalWrapper>

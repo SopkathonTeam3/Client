@@ -1,6 +1,6 @@
-import { client } from './axios';
+import { client } from '../../lib/axios';
 import { useRecoilValue } from 'recoil';
-import { userAtom } from '../recoil/atoms/bottleAtom';
+import { userAtom } from '../../recoil/atoms/bottleAtom';
 
 export const useGetLetter = async () => {
   const { userId, roomId } = useRecoilValue(userAtom);
