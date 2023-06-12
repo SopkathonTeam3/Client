@@ -40,10 +40,10 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
     e.stopPropagation();
   };
 
-  const createLetter = e => {
-    postLetter(userid, roomid, answerOne, answerTwo);
+  const createLetter = async e => {
+    await postLetter(userid, roomid, answerOne, answerTwo);
     closeModal(e);
-    window.location.replace(`/main/${userid}/${roomid}`);
+    window.location.reload();
   };
   useEffect(() => {
     handleAnswer();

@@ -6,8 +6,8 @@ export const postLetter = async (userId, roomId, firstAnswer, secondAnswer) => {
       firstAnswer,
       secondAnswer,
     });
-    console.log(data);
-    return data;
+
+    console.log('@@@@@@@@@' + data);
   } catch (e) {
     console.error(e);
   }
