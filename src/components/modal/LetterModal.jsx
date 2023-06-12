@@ -92,7 +92,8 @@ const St = {
     border-radius: 1.2rem;
     background-color: ${({ theme }) => theme.color.white};
 
-    z-index: 99;
+    z-index: 4;
+    cursor: auto;
   `,
 
   ModalHeaderContent: styled.div`
@@ -180,6 +181,7 @@ const St = {
   CloseModal: styled.img`
     width: 2.4rem;
     height: 2.4rem;
+    cursor: pointer;
   `,
 
   MessageIcon: styled.img`

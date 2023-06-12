@@ -42,8 +42,6 @@ const BottleListWrapper = styled.div`
   padding: 0px 30px;
   background-image: linear-gradient(161.58deg, #9a94fd 0%, #0089db 31.02%, #0056ba 78.45%);
   flex-wrap: wrap;
-
-  cursor: pointer;
 `;
 
 export default BottleList;

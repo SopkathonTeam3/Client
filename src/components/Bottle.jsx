@@ -29,12 +29,14 @@ const Bottle = ({ userId, content1, content2, bottleId }) => {
     >
       {bottleId === 1 && <PlusButton></PlusButton>}
       {isOpen && (
-        <LetterModal
-          setIsOpen={setIsOpen}
-          bottleId={bottleId}
-          content1={content1}
-          content2={content2}
-        />
+        <ModalWrapper>
+          <LetterModal
+            setIsOpen={setIsOpen}
+            bottleId={bottleId}
+            content1={content1}
+            content2={content2}
+          />
+        </ModalWrapper>
       )}
     </BottleContainer>
   );
@@ -47,6 +49,8 @@ const BottleContainer = styled.div`
   height: 23.7rem;
   background-image: url(${props => props.backgroundimage});
   margin-top: ${props => props.rightmargin};
+
+  cursor: pointer;
 `;
 
 const PlusButton = styled.button`
@@ -68,12 +72,14 @@ const ModalWrapper = styled.div`
   width: auto;
   height: auto;
   position: fixed;
-  z-index: 999;
+  z-index: 3;
 
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
+
+  cursor: auto;
 `;
 
 export default Bottle;
