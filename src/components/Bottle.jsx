@@ -17,10 +17,6 @@ const Bottle = ({ userId, content1, content2, bottleId }) => {
     console.log(bottleId);
   };
 
-  const handleModalClose = () => {
-    setIsOpen(false);
-  };
-
   return (
     <BottleContainer
       backgroundimage={backgroundImage}
