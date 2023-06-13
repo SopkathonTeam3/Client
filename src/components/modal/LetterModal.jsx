@@ -106,9 +106,15 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
           readOnly={readOnly}
         />
       </St.ModalMain>
-      <St.ModalBtn isanswered={isAnswered.toString()} onClick={createLetter}>
-        {bottleId != 1 ? '닫기' : '편지 띄우기'}
-      </St.ModalBtn>
+      {bottleId != 1 ? (
+        <St.ModalBtn isanswered={isAnswered.toString()} onClick={closeModal}>
+          닫기
+        </St.ModalBtn>
+      ) : (
+        <St.ModalBtn isanswered={isAnswered.toString()} onClick={createLetter}>
+          편지 띄우기
+        </St.ModalBtn>
+      )}
     </St.ModalWrapper>
   );
 };
