@@ -3,8 +3,14 @@ import styled from 'styled-components';
 import ModalClose from '../../assets/svgs/modal_close.svg';
 import Message from '../../assets/svgs/modal_message.svg';
 
+import '../../styles/modal.css';
+
 import { postLetter } from '../../utils/apis/postLetter';
 import { useParams } from 'react-router-dom';
+
+import { useRecoilValue } from 'recoil';
+import { bottleAtom } from '../../recoil/atoms/bottleAtom';
+
 /* isOpen을 제어받는 것보다 이칭구를 제어하는 함수를
 props로 보내서 closeModal로 state를 바꿔주는게 직관적인 사용법이야!
 다만, 이게 Bottle의 자식 컴포넌트에서 부모 컴포넌트의 state를 바꿔주는 거라
@@ -18,11 +24,20 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
   const [readOnly, setReadOnly] = useState(true);
   const { userid, roomid } = useParams();
 
+  const [userName, setUserName] = useState();
+
+  const { userResponseDto, roomResponseDto } = useRecoilValue(bottleAtom);
+  console.log(userResponseDto, roomResponseDto);
+  useEffect(() => {
+    setUserName(userResponseDto.name);
+  });
+
   const handleOne = e => {
     setAnswerOne(e.target.value);
   };
 
   console.log(content1, '2: ', content2);
+
   const handleTwo = e => {
     setAnswerTwo(e.target.value);
   };
@@ -65,7 +80,7 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
 
           <St.MessageIcon src={Message} alt="messageIcon" />
           <St.ModalHeaderTitle>
-            윤여진님에게 <br />
+            {userName}에게 <br />
             편지를 남겨주세요!
           </St.ModalHeaderTitle>
         </St.ModalHeaderContent>
@@ -91,9 +106,15 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
           readOnly={readOnly}
         />
       </St.ModalMain>
-      <St.ModalBtn isanswered={isAnswered.toString()} onClick={createLetter}>
-        편지 띄우기
-      </St.ModalBtn>
+      {bottleId != 1 ? (
+        <St.ModalBtn isanswered={isAnswered.toString()} onClick={closeModal}>
+          닫기
+        </St.ModalBtn>
+      ) : (
+        <St.ModalBtn isanswered={isAnswered.toString()} onClick={createLetter}>
+          편지 띄우기
+        </St.ModalBtn>
+      )}
     </St.ModalWrapper>
   );
 };
@@ -113,8 +134,10 @@ const St = {
     border-radius: 1.2rem;
     background-color: ${({ theme }) => theme.color.white};
 
-    z-index: 4;
+    z-index: 999;
     cursor: auto;
+
+    animation: modal-show 0.3s;
   `,
 
   ModalHeaderContent: styled.div`
