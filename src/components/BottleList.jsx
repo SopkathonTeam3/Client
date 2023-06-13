@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react';
 import Bottle from './Bottle';
 import { getLetter } from '../recoil/getLetter';
 import { useParams, useLocation } from 'react-router-dom';
+
+import { useRecoilValue } from 'recoil';
+
+
 import ShareRequestModal from './modal/ShareRequestModal';
 const BottleList = () => {
   const { userid, roomid } = useParams();
