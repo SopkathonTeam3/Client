@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BottleList from '../components/BottleList';
 import HomeHeader from '../components/HomeHeader';
 import RequestModal from '../components/modal/RequestModal';

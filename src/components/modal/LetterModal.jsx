@@ -37,6 +37,7 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
   };
 
   console.log(content1, '2: ', content2);
+
   const handleTwo = e => {
     setAnswerTwo(e.target.value);
   };
@@ -106,7 +107,7 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
         />
       </St.ModalMain>
       <St.ModalBtn isanswered={isAnswered.toString()} onClick={createLetter}>
-        편지 띄우기
+        {bottleId != 1 ? '닫기' : '편지 띄우기'}
       </St.ModalBtn>
     </St.ModalWrapper>
   );
