@@ -25,7 +25,7 @@ const Bottle = ({ userId, content1, content2, bottleId }) => {
     >
       {bottleId === 1 && <PlusButton></PlusButton>}
       {isOpen && (
-        <ModalWrapper>
+        <ModalWrapper className={isOpen ? 'modal' : ''}>
           <LetterModal
             setIsOpen={setIsOpen}
             bottleId={bottleId}
@@ -74,6 +74,8 @@ const ModalWrapper = styled.div`
   right: 0;
   top: 0;
   bottom: 0;
+
+  background-color: rgba(0, 0, 0, 0.6);
 
   cursor: auto;
 `;

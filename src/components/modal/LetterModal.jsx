@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import ModalClose from '../../assets/svgs/modal_close.svg';
 import Message from '../../assets/svgs/modal_message.svg';
 
+import '../../styles/modal.css';
+
 import { postLetter } from '../../utils/apis/postLetter';
 import { useParams } from 'react-router-dom';
 /* isOpen을 제어받는 것보다 이칭구를 제어하는 함수를
@@ -113,8 +115,10 @@ const St = {
     border-radius: 1.2rem;
     background-color: ${({ theme }) => theme.color.white};
 
-    z-index: 4;
+    z-index: 999;
     cursor: auto;
+
+    animation: modal-show 0.3s;
   `,
 
   ModalHeaderContent: styled.div`
