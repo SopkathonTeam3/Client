@@ -11,13 +11,14 @@ import { getBottleSelector } from '../recoil/selectors/selector';
 
 const BottleList = () => {
   // selector에서 필요한 data => posts, roomResponseDto중 남은 날짜 데이터 가져오기
-  const { posts, roomResponseDto } = useRecoilValue(getBottleSelector);
+  const { userResponseDto, posts, roomResponseDto } = useRecoilValue(getBottleSelector);
 
+  const bgColor = userResponseDto.backgroundColorCode;
   const bottles = posts;
   const dDay = roomResponseDto.remainingDays;
 
   return (
-    <BottleListWrapper bottle={bottles}>
+    <BottleListWrapper bottle={bottles} bgColor={bgColor}>
       <Bottle bottleId={1} content1="" content2="" />
       {bottles?.map(({ firstAnswer, secondAnswer }, index) => (
         <Bottle key={index} content1={firstAnswer} content2={secondAnswer} bottleId={index + 2} />
@@ -32,7 +33,7 @@ const BottleListWrapper = styled.div`
   height: ${props => (props.bottle.length < 2 ? '550px' : 'auto')};
   margin: 0px 16px;
   padding: 20px 30px;
-  background-image: linear-gradient(161.58deg, #9a94fd 0%, #0089db 31.02%, #0056ba 78.45%);
+  background-image: ${({ bgColor }) => bgColor};
   flex-wrap: wrap;
 `;
 
