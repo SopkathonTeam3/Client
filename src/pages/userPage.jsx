@@ -10,6 +10,7 @@ const UserPage = () => {
 
   const handleInputChange = () => {
     if (inputRef !== '') {
+      console.log('!!');
       setIsClickable(true);
     }
     setUserName(inputRef.current.value);
