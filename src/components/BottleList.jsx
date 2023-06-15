@@ -12,7 +12,8 @@ import { getBottleSelector } from '../recoil/selectors/selector';
 const BottleList = () => {
   // selector에서 필요한 data => posts, roomResponseDto중 남은 날짜 데이터 가져오기
   const { userResponseDto, posts, roomResponseDto } = useRecoilValue(getBottleSelector);
-  const remainDateCode = roomResponseDto.remainingCode;
+  const { remainDateCode } = roomResponseDto.remainingCode;
+
   const bgColor = userResponseDto.backgroundColorCode;
   const bottles = posts;
 
