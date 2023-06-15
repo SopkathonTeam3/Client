@@ -22,9 +22,6 @@ const Bottle = ({ userId, content1, content2, bottleId, remainDateCode }) => {
   let backgroundImage = BottleLeft1;
   const [isOpen, setIsOpen] = useState(false);
 
-  const bottleInfo = useRecoilValue(getBottleSelector);
-  console.log(bottleId);
-  console.log(remainDateCode);
   const {
     roomResponseDto: { remainingCode: remainCode },
   } = useRecoilValue(getBottleSelector);
@@ -67,11 +64,9 @@ const Bottle = ({ userId, content1, content2, bottleId, remainDateCode }) => {
     }
   }
 
-  console.log(backgroundImage);
   // const backgroundImage = (bottleId % 2 === 1)&&(remainCode===-4)  ? BottleLeft1 : BottleRight1;
-  console.log(remainCode);
+
   const handleOnclick = () => {
-    console.log(bottleId, 'id입니다');
     setIsOpen(true);
   };
 
