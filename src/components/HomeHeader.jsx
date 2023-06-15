@@ -6,7 +6,7 @@ import { getBottleSelector } from '../recoil/selectors/selector';
 
 const HomeHeader = () => {
   const [userName, setUserName] = useState();
-  const [reaminDays, setRemainDays] = useState();
+  const [remainDays, setRemainDays] = useState();
   //링크 복사
   const handleCopyClipBoard = async text => {
     try {
@@ -33,9 +33,13 @@ const HomeHeader = () => {
           편지 요청하기
         </St.headerBtn>
       </St.headerTop>
-      <St.headerContent>
-        편지 열람까지 <St.dayHighLight>{reaminDays}</St.dayHighLight>일 남았어요
-      </St.headerContent>
+      {remainDays > 0 ? (
+        <St.headerContent>
+          편지 열람까지 <St.dayHighLight>{remainDays}</St.dayHighLight>일 남았어요
+        </St.headerContent>
+      ) : (
+        <St.headerContent>편지를 열람할 수 있어요!</St.headerContent>
+      )}
     </St.headerWrapper>
   );
 };
