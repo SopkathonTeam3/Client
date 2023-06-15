@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router';
+import user_smile from '../assets/svgs/user_smile.svg';
 
 const UserPage = () => {
   const [userName, setUserName] = useState();
@@ -36,7 +37,7 @@ const UserPage = () => {
           이름은 무엇인가요?
         </p>
       </St.userInfoText>
-      <St.userInfoIcon src="./src/assets/svgs/user_smile.svg" />
+      <St.userInfoIcon src={user_smile} />
       <St.userNameInput ref={inputRef} onChange={handleInputChange} onKeyDown={handleEnter} />
       <St.userSubmitBtn isClickable={isClickable} onClick={handleUserSubmit}>
         다음으로
