@@ -32,7 +32,7 @@ const UserPage = () => {
       <St.userInfoIcon src="./src/assets/svgs/user_smile.svg" />
       <St.userNameInput ref={inputRef} onChange={handleInputChange} />
       <St.userSubmitBtn isClickable={isClickable} onClick={handleUserSubmit}>
-        버튼
+        다음으로
       </St.userSubmitBtn>
     </St.userPageWrapper>
   );
