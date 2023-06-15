@@ -1,20 +1,78 @@
 import React from 'react';
 import styled from 'styled-components';
 // import { Icon } from './Icon/index';
-import BottleRight from './../assets/svgs/bottle_right_1.svg';
-import BottleLeft from './../assets/svgs/bottle_left_1.svg';
+import BottleRight1 from './../assets/svgs/bottle_right_1.svg';
+import BottleRight2 from './../assets/svgs/bottle_right_2.svg';
+import BottleRight4 from './../assets/svgs/bottle_right_4.svg';
+import BottleRight8 from './../assets/svgs/bottle_right_8.svg';
+
+import BottleLeft1 from './../assets/svgs/bottle_left_1.svg';
+import BottleLeft2 from './../assets/svgs/bottle_left_2.svg';
+import BottleLeft4 from './../assets/svgs/bottle_left_4.svg';
+import BottleLeft8 from './../assets/svgs/bottle_left_8.svg';
+
 import LetterModal from './modal/LetterModal';
 import PlusButtonImage from './../assets/svgs/plusButton.svg';
 import { useState, useEffect } from 'react';
-const Bottle = ({ userId, content1, content2, bottleId }) => {
-  const backgroundImage = bottleId % 2 === 1 ? BottleLeft : BottleRight;
+
+import { getBottleSelector } from '../recoil/selectors/selector';
+import { useRecoilValue } from 'recoil';
+const Bottle = ({ userId, content1, content2, bottleId, remainDateCode }) => {
   const rightMargin = bottleId % 2 === 1 ? '0px' : '120px';
+  let backgroundImage = BottleLeft1;
   const [isOpen, setIsOpen] = useState(false);
 
+  const bottleInfo = useRecoilValue(getBottleSelector);
+  console.log(bottleId);
+  console.log(remainDateCode);
+  const {
+    roomResponseDto: { remainingCode: remainCode },
+  } = useRecoilValue(getBottleSelector);
+
+  if (bottleId % 2 === 1) {
+    switch (remainDateCode) {
+      case -4:
+        backgroundImage = BottleLeft1;
+        break;
+      case -3:
+        backgroundImage = BottleLeft2;
+        break;
+      case -2:
+        backgroundImage = BottleLeft4;
+        break;
+      case -1:
+        backgroundImage = BottleLeft8;
+        break;
+      default:
+        backgroundImage = BottleLeft1;
+        break;
+    }
+  } else {
+    switch (remainDateCode) {
+      case -4:
+        backgroundImage = BottleRight1;
+        break;
+      case -3:
+        backgroundImage = BottleRight2;
+        break;
+      case -2:
+        backgroundImage = BottleRight4;
+        break;
+      case -1:
+        backgroundImage = BottleRight8;
+        break;
+      default:
+        backgroundImage = BottleRight1;
+        break;
+    }
+  }
+
+  console.log(backgroundImage);
+  // const backgroundImage = (bottleId % 2 === 1)&&(remainCode===-4)  ? BottleLeft1 : BottleRight1;
+  console.log(remainCode);
   const handleOnclick = () => {
     console.log(bottleId, 'id입니다');
     setIsOpen(true);
-    console.log(bottleId);
   };
 
   return (
@@ -44,6 +102,11 @@ const BottleContainer = styled.div`
   width: 13rem;
   height: 23.7rem;
   background-image: url(${props => props.backgroundimage});
+  /* ${props =>
+    props.remainCode === -4 &&
+    `
+    background-image:url(${props => props.backgroundimage});
+  `} */
   margin-top: ${props => props.rightmargin};
 
   cursor: pointer;
