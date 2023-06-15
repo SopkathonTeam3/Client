@@ -9,7 +9,7 @@ import { postLetter } from '../../utils/apis/postLetter';
 import { useParams } from 'react-router-dom';
 
 import { useRecoilValue } from 'recoil';
-import { bottleAtom } from '../../recoil/atoms/bottleAtom';
+import { getBottleSelector } from '../../recoil/selectors/selector';
 
 /* isOpen을 제어받는 것보다 이칭구를 제어하는 함수를
 props로 보내서 closeModal로 state를 바꿔주는게 직관적인 사용법이야!
@@ -26,7 +26,7 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
 
   const [userName, setUserName] = useState();
 
-  const { userResponseDto, roomResponseDto } = useRecoilValue(bottleAtom);
+  const { userResponseDto, roomResponseDto } = useRecoilValue(getBottleSelector);
   console.log(userResponseDto, roomResponseDto);
   useEffect(() => {
     setUserName(userResponseDto.name);

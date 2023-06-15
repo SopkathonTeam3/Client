@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useGetLetter } from '../../utils/apis/useGetLetter';
+import { getLetter } from '../../utils/apis/getLetter';
 import { atom, selector } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 
@@ -7,14 +7,7 @@ const { persistAtom } = recoilPersist();
 
 export const bottleAtom = atom({
   key: 'bottleState',
-  default: selector({
-    key: 'bottleAtom/default',
-    get: async () => {
-      const bottles = await useGetLetter();
-      console.log(bottles);
-      return bottles;
-    },
-  }),
+  default: {},
 });
 
 export const userAtom = atom({

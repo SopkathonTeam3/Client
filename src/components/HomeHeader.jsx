@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useGetLetter } from '../utils/apis/useGetLetter';
 
 import { useRecoilValue } from 'recoil';
-import { bottleAtom } from './../recoil/atoms/bottleAtom';
+import { getBottleSelector } from '../recoil/selectors/selector';
 
 const HomeHeader = () => {
   const [userName, setUserName] = useState();
@@ -18,29 +17,13 @@ const HomeHeader = () => {
     }
   };
 
-  // 데이터 통신 return이 안돼서 일단 atom에 저장 -> atom 값 가져오기
-  const { userResponseDto, roomResponseDto } = useRecoilValue(bottleAtom);
+  //get 통신한 selector에서 userData중 이름 정보 & roomData 중 남은 일 정보 가져오기
+  const { userResponseDto, roomResponseDto } = useRecoilValue(getBottleSelector);
   console.log(userResponseDto, roomResponseDto);
   useEffect(() => {
     setUserName(userResponseDto.name);
     setRemainDays(roomResponseDto.remainingDays);
   }, []);
-
-  // 이름 & 남은 날짜 데이터 받아오기
-  // const getHeaderData = async () => {
-  //   console.log('드렁옴');
-  //   const data2 = useGetLetter();
-  //   console.log(data2);
-
-  //   const data = await useGetLetter();
-  //   console.log(data, '?!?!?!?');
-  //   // setUserName(data.userResponseDto.name);
-  //   // setRemainDays(data.roomResponseDto.remainingDays);
-  // };
-
-  // useEffect(() => {
-  //   getHeaderData();
-  // }, []);
 
   return (
     <St.headerWrapper>
