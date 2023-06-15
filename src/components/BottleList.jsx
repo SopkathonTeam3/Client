@@ -1,22 +1,32 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Bottle from './Bottle';
-import { useGetLetter } from '../recoil/useGetLetter';
+import { getLetter } from '../utils/apis/getLetter';
+import { useParams, useLocation } from 'react-router-dom';
+
+import { useRecoilValue } from 'recoil';
+
+import ShareRequestModal from './modal/ShareRequestModal';
+import { getBottleSelector } from '../recoil/selectors/selector';
 
 const BottleList = () => {
-  const bottles = useRecoilValue(useGetLetter);
-  console.log(bottles);
-  const bottlesData = bottles.data.posts;
-  console.log(bottlesData);
+  // selector에서 필요한 data => posts, roomResponseDto중 남은 날짜 데이터 가져오기
+  const { userResponseDto, posts, roomResponseDto } = useRecoilValue(getBottleSelector);
+  const remainDateCode = roomResponseDto.remainingCode;
+  const bgColor = userResponseDto.backgroundColorCode;
+  const bottles = posts;
+
   return (
-    <BottleListWrapper>
-      {bottlesData.map(({ firstAnswer, secondAnswer }, index) => (
+    <BottleListWrapper bottle={bottles} bgColor={bgColor}>
+      <Bottle bottleId={1} content1="" content2="" remainDateCode={-4} />
+      {bottles?.map(({ firstAnswer, secondAnswer }, index) => (
         <Bottle
           key={index}
           content1={firstAnswer}
           content2={secondAnswer}
-          bottleId={index + 1}
-        ></Bottle>
+          bottleId={index + 2}
+          remainDateCode={remainDateCode}
+        />
       ))}
     </BottleListWrapper>
   );
@@ -25,13 +35,11 @@ const BottleList = () => {
 const BottleListWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-
+  height: ${props => (props.bottle.length < 2 ? '700px' : 'auto')};
   margin: 0px 16px;
-  padding: 0px 30px;
-  background-image: linear-gradient(161.58deg, #9a94fd 0%, #0089db 31.02%, #0056ba 78.45%);
+  padding: 20px 30px;
+  background-image: ${({ bgColor }) => bgColor};
   flex-wrap: wrap;
-
-  cursor: pointer;
 `;
 
 export default BottleList;

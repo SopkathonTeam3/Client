@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useGetLetter } from '../recoil/useGetLetter';
+
 import { useRecoilValue } from 'recoil';
-import { bottleAtom } from './../recoil/atoms/bottleAtom';
+import { getBottleSelector } from '../recoil/selectors/selector';
 
 const HomeHeader = () => {
   const [userName, setUserName] = useState();
-  const [reaminDays, setRemainDays] = useState();
+  const [remainDays, setRemainDays] = useState();
   //링크 복사
   const handleCopyClipBoard = async text => {
     try {
@@ -17,25 +17,29 @@ const HomeHeader = () => {
     }
   };
 
-  // 이름 & 남은 날짜 데이터 받아오기
-  const getAiosData = useRecoilValue(bottleAtom);
-
+  //get 통신한 selector에서 userData중 이름 정보 & roomData 중 남은 일 정보 가져오기
+  const { userResponseDto, roomResponseDto } = useRecoilValue(getBottleSelector);
+  console.log(userResponseDto, roomResponseDto);
   useEffect(() => {
-    setUserName(getAiosData.data.userResponseDto.name);
-    setRemainDays(getAiosData.data.roomResponseDto.remainingDays);
+    setUserName(userResponseDto.name);
+    setRemainDays(roomResponseDto.remainingDays);
   }, []);
 
   return (
     <St.headerWrapper>
       <St.headerTop>
-        <St.headerTitle>윤{userName}님의 바다</St.headerTitle>
+        <St.headerTitle>{userName}님의 바다</St.headerTitle>
         <St.headerBtn onClick={() => handleCopyClipBoard(window.location.href)}>
           편지 요청하기
         </St.headerBtn>
       </St.headerTop>
-      <St.headerContent>
-        편지 열람까지 <St.dayHighLight>{reaminDays}</St.dayHighLight>일 남았어요
-      </St.headerContent>
+      {remainDays > 0 ? (
+        <St.headerContent>
+          편지 열람까지 <St.dayHighLight>{remainDays}</St.dayHighLight>일 남았어요
+        </St.headerContent>
+      ) : (
+        <St.headerContent>편지를 열람할 수 있어요!</St.headerContent>
+      )}
     </St.headerWrapper>
   );
 };
