@@ -13,20 +13,17 @@ import BottleLeft8 from './../assets/svgs/bottle_left_8.svg';
 
 import LetterModal from './modal/LetterModal';
 import PlusButtonImage from './../assets/svgs/plusButton.svg';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { getBottleSelector } from '../recoil/selectors/selector';
 import { useRecoilValue } from 'recoil';
-const Bottle = ({ userId, content1, content2, bottleId, remainDateCode }) => {
+const Bottle = ({ content1, content2, bottleId, remainDateCode }) => {
   const rightMargin = bottleId % 2 === 1 ? '0px' : '120px';
   let backgroundImage = BottleLeft1;
   const [isOpen, setIsOpen] = useState(false);
 
-  const bottleInfo = useRecoilValue(getBottleSelector);
-  console.log(bottleId);
-  console.log(remainDateCode);
   const {
-    roomResponseDto: { remainingCode: remainCode },
+    roomResponseDto: { remainingDays: remainDay },
   } = useRecoilValue(getBottleSelector);
 
   if (bottleId % 2 === 1) {
@@ -67,12 +64,16 @@ const Bottle = ({ userId, content1, content2, bottleId, remainDateCode }) => {
     }
   }
 
-  console.log(backgroundImage);
-  // const backgroundImage = (bottleId % 2 === 1)&&(remainCode===-4)  ? BottleLeft1 : BottleRight1;
-  console.log(remainCode);
   const handleOnclick = () => {
-    console.log(bottleId, 'id입니다');
-    setIsOpen(true);
+    if (bottleId === 1 && remainDay) {
+      setIsOpen(true);
+    } else if (bottleId === 1 && !remainDay) {
+      alert('편지를 쓸 수 있는 날짜가 지났어요!');
+    } else if (bottleId !== 1 && remainDay) {
+      alert(`편지 열람까지 ${remainDay}일 남았어요!`);
+    } else {
+      setIsOpen(true);
+    }
   };
 
   return (
