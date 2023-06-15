@@ -3,20 +3,22 @@ import BottleList from '../components/BottleList';
 import HomeHeader from '../components/HomeHeader';
 import RequestModal from '../components/modal/RequestModal';
 import styled from 'styled-components';
-import { useRecoilState, useResetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
+
 import { RequestModalAtom } from '../recoil/atoms/modalAtom';
 
 const Main = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [count, setCount] = useRecoilState(RequestModalAtom);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     setCount(count + 1);
-    if (count === 0) {
-      setIsOpen(true);
-      setTimeout(() => setIsOpen(false), 3000);
-    } else {
-      setIsOpen(false);
+    if (count != 0) {
+      closeModal();
     }
     console.log(count);
   }, []);
@@ -25,8 +27,8 @@ const Main = () => {
     <div>
       <HomeHeader />
       {isOpen && (
-        <ModalWrapper>
-          <RequestModal />
+        <ModalWrapper className={isOpen ? 'modal' : ''}>
+          <RequestModal setIsOpen={setIsOpen} isOpen={isOpen} />
         </ModalWrapper>
       )}
       <BottleList />
