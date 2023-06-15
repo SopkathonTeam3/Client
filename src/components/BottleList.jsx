@@ -13,11 +13,8 @@ const BottleList = () => {
   // selector에서 필요한 data => posts, roomResponseDto중 남은 날짜 데이터 가져오기
   const { userResponseDto, posts, roomResponseDto } = useRecoilValue(getBottleSelector);
   const remainDateCode = roomResponseDto.remainingCode;
-
-  console.log(remainDateCode);
   const bgColor = userResponseDto.backgroundColorCode;
   const bottles = posts;
-  const dDay = roomResponseDto.remainingDays;
 
   return (
     <BottleListWrapper bottle={bottles} bgColor={bgColor}>
@@ -28,7 +25,7 @@ const BottleList = () => {
           content1={firstAnswer}
           content2={secondAnswer}
           bottleId={index + 2}
-          remainDateCode={-2}
+          remainDateCode={remainDateCode}
         />
       ))}
     </BottleListWrapper>
