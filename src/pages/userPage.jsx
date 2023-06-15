@@ -20,6 +20,12 @@ const UserPage = () => {
     navigate('/custom');
   };
 
+  const handleEnter = e => {
+    if (e.key === 'Enter') {
+      handleUserSubmit();
+    }
+  };
+
   return (
     <St.userPageWrapper>
       <St.userInfoText>
@@ -30,7 +36,7 @@ const UserPage = () => {
         </p>
       </St.userInfoText>
       <St.userInfoIcon src="./src/assets/svgs/user_smile.svg" />
-      <St.userNameInput ref={inputRef} onChange={handleInputChange} />
+      <St.userNameInput ref={inputRef} onChange={handleInputChange} onKeyDown={handleEnter} />
       <St.userSubmitBtn isClickable={isClickable} onClick={handleUserSubmit}>
         다음으로
       </St.userSubmitBtn>

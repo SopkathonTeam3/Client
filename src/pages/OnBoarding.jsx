@@ -27,7 +27,6 @@ const OnBoarding = () => {
         </St.Subtitle>
 
         <St.MakeBtn onClick={handleStart}>내 바다 만들기</St.MakeBtn>
-
         <img src={float} alt="바닥" />
       </St.Wrapper>
     </>
@@ -40,6 +39,7 @@ const St = {
   Wrapper: styled.section`
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 100vh;
@@ -47,7 +47,7 @@ const St = {
   ImgWrapper: styled.div`
     display: flex;
     width: 70px;
-    height: 110px;
+    /* height: 110px; */
     margin-bottom: 12px;
     margin-top: 128px;
   `,
@@ -67,7 +67,7 @@ const St = {
     flex-direction: column;
     align-items: center;
 
-    margin-bottom: 36px;
+    padding-bottom: 36px;
 
     & > p {
       ${({ theme }) => theme.text.subtitle2.body1};
@@ -79,13 +79,12 @@ const St = {
     justify-content: center;
     align-items: center;
 
-    width: 169px;
-    height: 64px;
+    /* width: 169px; */
 
     background-color: ${({ theme }) => theme.color.black};
 
     border-radius: 40px;
-
+    padding: 18px 28px;
     margin-bottom: 80px;
     & {
       ${({ theme }) => theme.text.subtitle2};
