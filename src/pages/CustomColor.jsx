@@ -42,7 +42,7 @@ const CustomColor = () => {
     const { userId, roomId } = await usePostUser(reqData);
     if (userId && roomId) {
       window.localStorage.removeItem('userName');
-      setUserInfo({ userId: userId, roomId: roomId });
+      // setUserInfo({ userId: userId, roomId: roomId });
       navigate(`/main/${userId}/${roomId}`);
     }
     // setUserInfo({ userId: userId, roomId: roomId });

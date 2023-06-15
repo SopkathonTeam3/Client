@@ -6,16 +6,25 @@ import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 
 import { RequestModalAtom } from '../recoil/atoms/modalAtom';
+import { useParams } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import { userAtom } from '../recoil/atoms/bottleAtom';
 
 const Main = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [count, setCount] = useRecoilState(RequestModalAtom);
+  const { userid, roomid } = useParams();
+
+  // console.log('userid:', userid, 'roomid:', roomid);
+
+  const setUserInfo = useSetRecoilState(userAtom);
 
   const closeModal = () => {
     setIsOpen(false);
   };
 
   useEffect(() => {
+    setUserInfo({ userId: userid, roomId: roomid });
     setCount(count + 1);
     if (count != 0) {
       closeModal();
