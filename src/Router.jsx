@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import CustomColor from './pages/CustomColor';
 import Main from './pages/Main';
-import UserPage from './pages/UserPage';
+import UserPage from './pages/userPage';
 import ShareRequestModal from './components/modal/ShareRequestModal';
 import OnBoarding from './pages/OnBoarding';
 import CustomColorå from './pages/CustomColor';
