@@ -18,3 +18,10 @@ export const userAtom = atom({
   },
   effects_UNSTABLE: [persistAtom],
 });
+
+export const modalAtom = atom({
+  key: 'modalAtom',
+  default: {
+    value: 1,
+  },
+});
