@@ -1,4 +1,4 @@
-import { selector, useRecoilValue } from 'recoil';
+import { selector, useRecoilValue, selectorFamily } from 'recoil';
 
 import { getLetter } from '../../utils/apis/getLetter';
 
@@ -8,6 +8,7 @@ export const getBottleSelector = selector({
   key: 'getBottleSelector',
   get: async () => {
     const { userId, roomId } = useRecoilValue(userAtom);
+
     const bottles = await getLetter(userId, roomId);
     console.log(bottles);
     return bottles;

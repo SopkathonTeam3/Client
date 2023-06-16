@@ -3,21 +3,31 @@ import BottleList from '../components/BottleList';
 import HomeHeader from '../components/HomeHeader';
 import RequestModal from '../components/modal/RequestModal';
 import styled from 'styled-components';
-import { useRecoilState } from 'recoil';
 
 import { RequestModalAtom } from '../recoil/atoms/modalAtom';
-import { useParams } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useParams, useLocation } from 'react-router-dom';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import { userAtom } from '../recoil/atoms/bottleAtom';
-
+import { modalAtom } from '../recoil/atoms/bottleAtom';
 const Main = () => {
   const [isOpen, setIsOpen] = useState(true);
-  const [count, setCount] = useRecoilState(RequestModalAtom);
+  const [modal, setModal] = useRecoilState(modalAtom);
   const { userid, roomid } = useParams();
-
-  // console.log('userid:', userid, 'roomid:', roomid);
-
+  // const [rerender, setRerender] = useState(false);
   const setUserInfo = useSetRecoilState(userAtom);
+
+  // let prePath = '';
+  // let location = useLocation();
+  // console.log(location);
+  // useEffect(() => {
+  //   if (prePath.indexOf('/main/') !== -1) {
+  //     prePath = '';
+  //     // window.location.reload(); // 새로고침
+  //     console.log('ASdasd');
+  //   }
+
+  //   prePath = location.pathname; // 지금의 주소를 저장한다.
+  // }, [userid, roomid]);
 
   const closeModal = () => {
     setIsOpen(false);
@@ -25,11 +35,12 @@ const Main = () => {
 
   useEffect(() => {
     setUserInfo({ userId: userid, roomId: roomid });
-    setCount(count + 1);
-    if (count != 0) {
-      closeModal();
-    }
-    console.log(count);
+    // console.log(userid, roomid);
+    // setCount(count + 1);
+    // if (count != 0) {
+    //   closeModal();
+    // }
+    // console.log(count);
   }, []);
 
   return (
@@ -41,6 +52,7 @@ const Main = () => {
         </ModalWrapper>
       )}
       <BottleList />
+      {/* <BottleList /> */}
     </div>
   );
 };
