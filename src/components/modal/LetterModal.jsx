@@ -53,6 +53,7 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
     console.log('닫아!');
     setIsOpen(false);
     e.stopPropagation();
+    window.location.reload();
   };
 
   const createLetter = async e => {

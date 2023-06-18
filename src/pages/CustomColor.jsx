@@ -8,15 +8,16 @@ import { usePostUser } from '../utils/apis/usePostUser';
 import { useRecoilState } from 'recoil';
 import { userAtom } from '../recoil/atoms/bottleAtom';
 
+import { RequestModalAtom } from '../recoil/atoms/modalAtom';
+import { useSetRecoilState } from 'recoil';
 const CustomColor = () => {
   const navigate = useNavigate();
   const [ispick, setIsPick] = useState(false); //눌렀는지 여부
   const [picked, setPicked] = useState(''); //누른바다
   const colorRef = useRef([]);
   const userName = localStorage.getItem('userName');
-  const [userData, setUserData] = useState();
   const [userInfo, setUserInfo] = useRecoilState(userAtom);
-
+  const setRequestModal = useSetRecoilState(RequestModalAtom);
   useEffect(() => {
     colorRef.current = colorRef.current.slice(0, 3);
   });
@@ -44,14 +45,9 @@ const CustomColor = () => {
     if (userId && roomId) {
       window.localStorage.removeItem('userName');
       setUserInfo({ userId: userId, roomId: roomId });
+      setRequestModal(1);
       navigate(`/main/${userId}/${roomId}`);
     }
-    // setUserInfo({ userId: userId, roomId: roomId });
-    // console.log(response);
-    // setUserData(response); //3
-    // console.log(userData, '!!!'); //4
-    // console.log(userId, roomId);
-    // console.log('??? userInfo: ', userInfo);
   };
 
   const handleClickNext = () => {
