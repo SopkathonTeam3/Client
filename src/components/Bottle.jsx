@@ -59,11 +59,11 @@ const Bottle = ({ content1, content2, bottleId, remainDateCode, remainDay }) => 
   }
 
   const handleOnclick = () => {
-    if (bottleId === 1 && remainDay) {
+    if (bottleId === 1 && remainDay >= 0) {
       setIsOpen(true);
-    } else if (bottleId === 1 && !remainDay) {
+    } else if (bottleId === 1 && remainDay < 0) {
       alert('편지를 쓸 수 있는 날짜가 지났어요!');
-    } else if (bottleId !== 1 && remainDay) {
+    } else if (bottleId !== 1 && remainDay > 0) {
       alert(`편지 열람까지 ${remainDay}일 남았어요!`);
     } else {
       setIsOpen(true);
