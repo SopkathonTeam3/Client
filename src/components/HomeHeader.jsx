@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import styled from 'styled-components';
 
 import { useRecoilValue } from 'recoil';
 import { getBottleSelector } from '../recoil/selectors/selector';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const HomeHeader = ({ userid, roomid }) => {
   const [userName, setUserName] = useState();
   const [remainDays, setRemainDays] = useState();
+  const [copied, setCopied] = useState(false);
   //링크 복사
   // const handleCopyClipBoard = async text => {
   //   try {
@@ -16,14 +18,13 @@ const HomeHeader = ({ userid, roomid }) => {
   //     console.log(error);
   //   }
   // };
-  const handleCopyClipBoard = e => {
-    try {
-      e.clipboardData.setData('text/plain', window.location.href);
-      alert('클립보드에 편지 전달 링크가 복사되었어요!');
-    } catch (error) {
-      console.log(error);
-    }
+  const handleCopyClipBoard = () => {
+    alert('클립보드에 편지 전달 링크가 복사되었어요!');
   };
+
+  const onCopy = useCallback(() => {
+    setCopied(true);
+  });
 
   //get 통신한 selector에서 userData중 이름 정보 & roomData 중 남은 일 정보 가져오기
   const { userResponseDto, roomResponseDto } = useRecoilValue(
@@ -39,7 +40,9 @@ const HomeHeader = ({ userid, roomid }) => {
     <St.headerWrapper>
       <St.headerTop>
         <St.headerTitle>{userName}님의 바다</St.headerTitle>
-        <St.headerBtn onClick={() => handleCopyClipBoard(e)}>편지 요청하기</St.headerBtn>
+        <CopyToClipboard onCopy={onCopy} text={window.location.href}>
+          <St.headerBtn onClick={() => handleCopyClipBoard()}>편지 요청하기</St.headerBtn>
+        </CopyToClipboard>
       </St.headerTop>
       {remainDays > 0 ? (
         <St.headerContent>
