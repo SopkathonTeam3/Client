@@ -8,7 +8,7 @@ export const getBottleSelector = selector({
   key: 'getBottleSelector',
   get: async () => {
     const { userId, roomId } = useRecoilValue(userAtom);
-
+    console.log(userId, roomId);
     const bottles = await getLetter(userId, roomId);
     console.log(bottles);
     return bottles;

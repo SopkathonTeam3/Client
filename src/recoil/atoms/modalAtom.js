@@ -5,6 +5,6 @@ const { persistAtom } = recoilPersist();
 
 export const RequestModalAtom = atom({
   key: 'RequestModal',
-  default: 0,
+  default: 1,
   effects_UNSTABLE: [persistAtom],
 });

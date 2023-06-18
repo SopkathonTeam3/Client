@@ -46,12 +46,6 @@ const CustomColor = () => {
       setUserInfo({ userId: userId, roomId: roomId });
       navigate(`/main/${userId}/${roomId}`);
     }
-    // setUserInfo({ userId: userId, roomId: roomId });
-    // console.log(response);
-    // setUserData(response); //3
-    // console.log(userData, '!!!'); //4
-    // console.log(userId, roomId);
-    // console.log('??? userInfo: ', userInfo);
   };
 
   const handleClickNext = () => {
