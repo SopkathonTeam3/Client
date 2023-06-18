@@ -195,7 +195,7 @@ const St = {
     margin-bottom: 2.4rem;
     padding: 2rem;
     resize: none;
-    font-style: ${({ theme }) => theme.text.body2};
+    font-style: ${({ theme }) => theme.text.body1};
     font-family: inherit;
   `,
 
