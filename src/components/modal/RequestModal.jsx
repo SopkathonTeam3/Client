@@ -6,7 +6,7 @@ import modalClose from '../../assets/svgs/modal_close.svg';
 const RequestModal = ({ setIsOpen }) => {
   const closeModal = e => {
     console.log('닫아!');
-    setIsOpen(false);
+    setIsOpen(0);
     e.stopPropagation();
   };
 

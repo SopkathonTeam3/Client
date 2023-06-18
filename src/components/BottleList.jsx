@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import Bottle from './Bottle';
 import { getLetter } from '../utils/apis/getLetter';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useRecoilValue } from 'recoil';
 
@@ -22,7 +22,7 @@ const BottleList = () => {
       <Bottle bottleId={1} content1="" content2="" remainDateCode={-4} />
       {bottles?.map(({ firstAnswer, secondAnswer }, index) => (
         <Bottle
-          key={index}
+          key={index + firstAnswer}
           content1={firstAnswer}
           content2={secondAnswer}
           bottleId={index + 2}

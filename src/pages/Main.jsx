@@ -3,33 +3,29 @@ import BottleList from '../components/BottleList';
 import HomeHeader from '../components/HomeHeader';
 import RequestModal from '../components/modal/RequestModal';
 import styled from 'styled-components';
-import { useRecoilState } from 'recoil';
 
 import { RequestModalAtom } from '../recoil/atoms/modalAtom';
-import { useParams } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useParams, useLocation } from 'react-router-dom';
+import { useSetRecoilState, useRecoilState } from 'recoil';
 import { userAtom } from '../recoil/atoms/bottleAtom';
 
 const Main = () => {
-  const [isOpen, setIsOpen] = useState(true);
-  const [count, setCount] = useRecoilState(RequestModalAtom);
+  // const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useRecoilState(RequestModalAtom);
+
   const { userid, roomid } = useParams();
-
-  // console.log('userid:', userid, 'roomid:', roomid);
-
+  // const [rerender, setRerender] = useState(false);
   const setUserInfo = useSetRecoilState(userAtom);
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
+  let location = useLocation();
+
+  console.log(location);
+  useEffect(() => {
+    setUserInfo({ userId: userid, roomId: roomid });
+  }, [userid, roomid]);
 
   useEffect(() => {
     setUserInfo({ userId: userid, roomId: roomid });
-    setCount(count + 1);
-    if (count != 0) {
-      closeModal();
-    }
-    console.log(count);
   }, []);
 
   return (
