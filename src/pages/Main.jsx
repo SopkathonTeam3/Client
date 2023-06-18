@@ -22,7 +22,6 @@ const Main = () => {
   console.log(location);
   useEffect(() => {
     setUserInfo({ userId: userid, roomId: roomid });
-    setIsOpen(1);
   }, [userid, roomid]);
 
   useEffect(() => {
