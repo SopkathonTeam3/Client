@@ -19,6 +19,7 @@ const Main = () => {
   return (
     <div>
       <HomeHeader userid={userid} roomid={roomid} />
+
       {isOpen && (
         <ModalWrapper className={isOpen ? 'modal' : ''}>
           <RequestModal setIsOpen={setIsOpen} isOpen={isOpen} />
