@@ -20,10 +20,12 @@ const Main = () => {
     <div>
       <HomeHeader userid={userid} roomid={roomid} />
 
-      {isOpen && (
+      {isOpen ? (
         <ModalWrapper className={isOpen ? 'modal' : ''}>
           <RequestModal setIsOpen={setIsOpen} isOpen={isOpen} />
         </ModalWrapper>
+      ) : (
+        <div></div>
       )}
       <BottleList userid={userid} roomid={roomid} />
     </div>

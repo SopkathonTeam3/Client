@@ -9,15 +9,7 @@ const HomeHeader = ({ userid, roomid }) => {
   const [userName, setUserName] = useState();
   const [remainDays, setRemainDays] = useState();
   const [copied, setCopied] = useState(false);
-  //링크 복사
-  // const handleCopyClipBoard = async text => {
-  //   try {
-  //     await navigator.clipboard.writeText(text);
-  //     alert('클립보드에 편지 전달 링크가 복사되었어요!');
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+
   const handleCopyClipBoard = () => {
     alert('클립보드에 편지 전달 링크가 복사되었어요!');
   };

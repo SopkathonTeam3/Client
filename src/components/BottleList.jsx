@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import Bottle from './Bottle';
-import { getLetter } from '../utils/apis/getLetter';
-import { useParams } from 'react-router-dom';
-
 import { useRecoilValue } from 'recoil';
-
-import ShareRequestModal from './modal/ShareRequestModal';
 import { getBottleSelector } from '../recoil/selectors/selector';
 
 const BottleList = ({ userid, roomid }) => {
