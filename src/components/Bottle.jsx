@@ -15,17 +15,11 @@ import LetterModal from './modal/LetterModal';
 import PlusButtonImage from './../assets/svgs/plusButton.svg';
 import { useState } from 'react';
 
-import { getBottleSelector } from '../recoil/selectors/selector';
-import { useRecoilValue } from 'recoil';
-const Bottle = ({ content1, content2, bottleId, remainDateCode }) => {
+const Bottle = ({ content1, content2, bottleId, remainDateCode, remainDay }) => {
   const rightMargin = bottleId % 2 === 1 ? '0px' : '120px';
   let backgroundImage = BottleLeft1;
   const [isOpen, setIsOpen] = useState(false);
-
-  const {
-    roomResponseDto: { remainingDays: remainDay },
-  } = useRecoilValue(getBottleSelector);
-
+  console.log(remainDay);
   if (bottleId % 2 === 1) {
     switch (remainDateCode) {
       case -4:
