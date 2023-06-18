@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import { getBottleSelector } from '../recoil/selectors/selector';
 
-const HomeHeader = () => {
+const HomeHeader = ({ userid, roomid }) => {
   const [userName, setUserName] = useState();
   const [remainDays, setRemainDays] = useState();
   //링크 복사
@@ -18,13 +18,15 @@ const HomeHeader = () => {
   };
 
   //get 통신한 selector에서 userData중 이름 정보 & roomData 중 남은 일 정보 가져오기
-  const { userResponseDto, roomResponseDto } = useRecoilValue(getBottleSelector);
-  console.log(userResponseDto, roomResponseDto);
+  const { userResponseDto, roomResponseDto } = useRecoilValue(
+    getBottleSelector({ userId: userid, roomId: roomid })
+  );
+
   useEffect(() => {
     setUserName(userResponseDto.name);
     setRemainDays(roomResponseDto.remainingDays);
   }, []);
-
+  console.log(userResponseDto, roomResponseDto);
   return (
     <St.headerWrapper>
       <St.headerTop>

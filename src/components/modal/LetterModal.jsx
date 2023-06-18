@@ -25,9 +25,9 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
   const { userid, roomid } = useParams();
 
   const [userName, setUserName] = useState();
-
-  const { userResponseDto, roomResponseDto } = useRecoilValue(getBottleSelector);
-  console.log(userResponseDto, roomResponseDto);
+  const { userResponseDto, roomResponseDto } = useRecoilValue(
+    getBottleSelector({ userId: userid, roomId: roomid })
+  );
   useEffect(() => {
     setUserName(userResponseDto.name);
   });
@@ -35,8 +35,6 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
   const handleOne = e => {
     setAnswerOne(e.target.value);
   };
-
-  console.log(content1, '2: ', content2);
 
   const handleTwo = e => {
     setAnswerTwo(e.target.value);
@@ -53,7 +51,6 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
     console.log('닫아!');
     setIsOpen(false);
     e.stopPropagation();
-    window.location.reload();
   };
 
   const createLetter = async e => {

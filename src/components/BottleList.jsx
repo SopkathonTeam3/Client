@@ -9,17 +9,23 @@ import { useRecoilValue } from 'recoil';
 import ShareRequestModal from './modal/ShareRequestModal';
 import { getBottleSelector } from '../recoil/selectors/selector';
 
-const BottleList = () => {
+const BottleList = ({ userid, roomid }) => {
   // selector에서 필요한 data => posts, roomResponseDto중 남은 날짜 데이터 가져오기
-  const { userResponseDto, posts, roomResponseDto } = useRecoilValue(getBottleSelector);
-  const { remainDateCode } = roomResponseDto.remainingCode;
 
+  const { userResponseDto, posts, roomResponseDto } = useRecoilValue(
+    getBottleSelector({ userId: userid, roomId: roomid })
+  );
+
+  console.log(userResponseDto, posts, roomResponseDto);
+  const { remainingCode: remainDateCode, remainingDays: remainDay } = roomResponseDto;
+
+  console.log(remainDateCode, remainDay);
   const bgColor = userResponseDto.backgroundColorCode;
   const bottles = posts;
 
   return (
     <BottleListWrapper bottle={bottles} bgColor={bgColor}>
-      <Bottle bottleId={1} content1="" content2="" remainDateCode={-4} />
+      <Bottle bottleId={1} content1="" content2="" remainDateCode={-4} remainDay={remainDay} />
       {bottles?.map(({ firstAnswer, secondAnswer }, index) => (
         <Bottle
           key={index + firstAnswer}
@@ -27,6 +33,7 @@ const BottleList = () => {
           content2={secondAnswer}
           bottleId={index + 2}
           remainDateCode={remainDateCode}
+          remainDay={remainDay}
         />
       ))}
     </BottleListWrapper>

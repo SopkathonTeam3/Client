@@ -5,7 +5,6 @@ import Main from './pages/Main';
 import UserPage from './pages/userPage';
 import ShareRequestModal from './components/modal/ShareRequestModal';
 import OnBoarding from './pages/OnBoarding';
-import CustomColorå from './pages/CustomColor';
 
 const Router = () => {
   return (
@@ -16,6 +15,10 @@ const Router = () => {
         <Route path="/custom" element={<CustomColor />}></Route>
         <Route path="/loading" element={<div>로딩페이지를 넣어주세요</div>}></Route>
         <Route path="/main/:userid/:roomid" element={<Main></Main>}></Route>
+        {/* <Route
+          path="/main/:userid/:roomid"
+          render={props => <Main key={props.match.params.roomid}></Main>}
+        ></Route> */}
         <Route path="modal" element={<ShareRequestModal />} />
       </Routes>
     </BrowserRouter>

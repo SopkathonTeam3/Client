@@ -6,37 +6,25 @@ import styled from 'styled-components';
 
 import { RequestModalAtom } from '../recoil/atoms/modalAtom';
 import { useParams, useLocation } from 'react-router-dom';
-import { useSetRecoilState, useRecoilState } from 'recoil';
+import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
 import { userAtom } from '../recoil/atoms/bottleAtom';
+import { getBottleSelector } from '../recoil/selectors/selector';
 
 const Main = () => {
   // const [isOpen, setIsOpen] = useState(true);
   const [isOpen, setIsOpen] = useRecoilState(RequestModalAtom);
 
   const { userid, roomid } = useParams();
-  // const [rerender, setRerender] = useState(false);
-  const setUserInfo = useSetRecoilState(userAtom);
-
-  let location = useLocation();
-
-  console.log(location);
-  useEffect(() => {
-    setUserInfo({ userId: userid, roomId: roomid });
-  }, [userid, roomid]);
-
-  useEffect(() => {
-    setUserInfo({ userId: userid, roomId: roomid });
-  }, []);
 
   return (
     <div>
-      <HomeHeader />
+      <HomeHeader userid={userid} roomid={roomid} />
       {isOpen && (
         <ModalWrapper className={isOpen ? 'modal' : ''}>
           <RequestModal setIsOpen={setIsOpen} isOpen={isOpen} />
         </ModalWrapper>
       )}
-      <BottleList />
+      <BottleList userid={userid} roomid={roomid} />
     </div>
   );
 };
