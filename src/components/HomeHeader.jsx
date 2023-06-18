@@ -8,9 +8,17 @@ const HomeHeader = ({ userid, roomid }) => {
   const [userName, setUserName] = useState();
   const [remainDays, setRemainDays] = useState();
   //링크 복사
-  const handleCopyClipBoard = async text => {
+  // const handleCopyClipBoard = async text => {
+  //   try {
+  //     await navigator.clipboard.writeText(text);
+  //     alert('클립보드에 편지 전달 링크가 복사되었어요!');
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  const handleCopyClipBoard = e => {
     try {
-      await navigator.clipboard.writeText(text);
+      e.clipboardData.setData('text/plain', window.location.href);
       alert('클립보드에 편지 전달 링크가 복사되었어요!');
     } catch (error) {
       console.log(error);
@@ -31,9 +39,7 @@ const HomeHeader = ({ userid, roomid }) => {
     <St.headerWrapper>
       <St.headerTop>
         <St.headerTitle>{userName}님의 바다</St.headerTitle>
-        <St.headerBtn onClick={() => handleCopyClipBoard(window.location.href)}>
-          편지 요청하기
-        </St.headerBtn>
+        <St.headerBtn onClick={() => handleCopyClipBoard(e)}>편지 요청하기</St.headerBtn>
       </St.headerTop>
       {remainDays > 0 ? (
         <St.headerContent>
