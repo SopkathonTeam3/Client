@@ -29,7 +29,7 @@ const BottleList = ({ userid, roomid }) => {
           remainDay={remainDay}
         />
       ))}
-      <MainpageBtn onClick={() => navigate('/')}>나만의 바다 만들기</MainpageBtn>
+      <MainpageBtn onClick={() => navigate('/')}>나의 바다 만들기</MainpageBtn>
     </BottleListWrapper>
   );
 };
