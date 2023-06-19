@@ -22,22 +22,37 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
   const [answerTwo, setAnswerTwo] = useState(content2);
   const [isAnswered, setIsAnswered] = useState(false);
   const [readOnly, setReadOnly] = useState(true);
+  const [answerOneCount, setAnswerOneCount] = useState(0);
+  const [answerTwoCount, setAnswerTwoCount] = useState(0);
   const { userid, roomid } = useParams();
 
+  //글자 수 제한
+  const MAX_TEXT_LENGTH = 100;
+
   const [userName, setUserName] = useState();
+
   const { userResponseDto, roomResponseDto } = useRecoilValue(
     getBottleSelector({ userId: userid, roomId: roomid })
   );
+
   useEffect(() => {
     setUserName(userResponseDto.name);
   });
 
   const handleOne = e => {
+    if (e.target.value.length > e.target.maxLength) {
+      e.target.value = e.target.value.slice(0, e.target.maxLength);
+    }
     setAnswerOne(e.target.value);
+    setAnswerOneCount(e.target.value.length);
   };
 
   const handleTwo = e => {
+    if (e.target.value.length > e.target.maxLength) {
+      e.target.value = e.target.value.slice(0, e.target.maxLength);
+    }
     setAnswerTwo(e.target.value);
+    setAnswerTwoCount(e.target.value.length);
   };
 
   const handleAnswer = () => {
@@ -104,6 +119,12 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
             readOnly={readOnly}
             onInput={maxLengthCheck(this)}
           />
+          <St.ModalAnswerCount>
+            <p>
+              <span>{answerOneCount}</span>
+              <span>/100자</span>
+            </p>
+          </St.ModalAnswerCount>
         </p>
 
         <St.ModalQuestion>Q.의외의 지점은 무엇이었나요?</St.ModalQuestion>
@@ -115,6 +136,12 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
           readOnly={readOnly}
           onInput={maxLengthCheck(this)}
         />
+        <St.ModalAnswerCount>
+          <p>
+            <span>{answerTwoCount}</span>
+            <span>/100자</span>
+          </p>
+        </St.ModalAnswerCount>
       </St.ModalMain>
       {bottleId != 1 ? (
         <St.ModalBtn isanswered={isAnswered.toString()} onClick={closeModal}>
@@ -204,11 +231,22 @@ const St = {
     width: 27.1rem;
     height: 12rem;
 
-    margin-bottom: 2.4rem;
+    margin-bottom: 0.5rem;
     padding: 2rem;
     resize: none;
     ${({ theme }) => theme.text.body4};
     font-family: inherit;
+  `,
+
+  ModalAnswerCount: styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2.4rem;
+    & p,
+    span {
+      ${({ theme }) => theme.text.body4};
+      color: ${({ theme }) => theme.color.gray400};
+    }
   `,
 
   ModalQuestion: styled.h2`
