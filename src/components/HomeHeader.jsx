@@ -16,7 +16,7 @@ const HomeHeader = ({ userid, roomid }) => {
     alert('클립보드에 편지 전달 링크가 복사되었어요!');
     setIsShare(1);
   };
-  console.log('isShare ' + isShare);
+
   const onCopy = useCallback(() => {
     setCopied(true);
   });

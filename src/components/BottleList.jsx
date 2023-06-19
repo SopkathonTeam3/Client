@@ -11,10 +11,8 @@ const BottleList = ({ userid, roomid }) => {
     getBottleSelector({ userId: userid, roomId: roomid })
   );
 
-  console.log(userResponseDto, posts, roomResponseDto);
   const { remainingCode: remainDateCode, remainingDays: remainDay } = roomResponseDto;
 
-  console.log(remainDateCode, remainDay);
   const bgColor = userResponseDto.backgroundColorCode;
   const bottles = posts;
 

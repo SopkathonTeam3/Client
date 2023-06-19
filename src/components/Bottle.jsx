@@ -24,9 +24,7 @@ const Bottle = ({ content1, content2, bottleId, remainDateCode, remainDay }) => 
   const [isShare, setIsShare] = useRecoilState(shareReqModalAtom);
   const [reqmodalOpen, setReqmodalOpen] = useState(false);
   const [modalState, setModalState] = useState(false);
-  console.log(remainDay);
-  // setIsShare(false);
-  console.log(isShare);
+
   if (bottleId % 2 === 1) {
     switch (remainDateCode) {
       case -4:
@@ -74,20 +72,16 @@ const Bottle = ({ content1, content2, bottleId, remainDateCode, remainDay }) => 
       alert(`편지 열람까지 ${remainDay}일 남았어요!`);
     } else if (bottleId !== 1 && bottleId % 2 === 0 && remainDay <= 0 && !isShare) {
       setReqmodalOpen(true);
-      console.log('reqModal open');
     } else if (bottleId !== 1 && bottleId % 2 === 0 && remainDay <= 0 && isShare) {
       setIsOpen(true);
-      console.log('on share ');
     } else {
       setIsOpen(true);
     }
   };
 
-  console.log(isShare);
   useEffect(() => {
     if (isShare) {
       setModalState(false);
-      console.log('공유값 바뀜~');
     }
   }, [isShare]);
 

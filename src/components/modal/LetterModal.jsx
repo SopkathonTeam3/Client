@@ -48,7 +48,6 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
     }
   };
   const closeModal = e => {
-    console.log('닫아!');
     setIsOpen(false);
     e.stopPropagation();
   };
@@ -60,7 +59,6 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
   };
   useEffect(() => {
     handleAnswer();
-    console.log(isAnswered);
   }, [answerOne, answerTwo]);
 
   useEffect(() => {
