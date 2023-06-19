@@ -57,6 +57,11 @@ const MainpageBtn = styled.button`
   padding: 12px 10px;
   background-color: ${({ theme }) => theme.color.black};
   color: ${({ theme }) => theme.color.white};
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
 `;
 
 export default BottleList;
