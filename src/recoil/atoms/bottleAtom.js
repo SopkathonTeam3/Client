@@ -25,3 +25,9 @@ export const modalAtom = atom({
     value: 1,
   },
 });
+
+export const shareReqModalAtom = atom({
+  key: 'shareReqModalAtom',
+  default: 0,
+  // effects_UNSTABLE: [persistAtom],
+});

@@ -17,7 +17,7 @@ const text = {
   subtitle0: 'font-weight: 700; font-size: 2.8rem; line-height: 3.8rem;',
   subtitle1: 'font-size: 1.8rem; font-weight: 600; line-height: 2.0rem',
   subtitle2: 'font-size: 2.0rem; font-weight: 700; line-height: 2.8rem',
-  body0: 'font-size: 2.4rem; font-weight: 400; line-height: 2.0rem',
+  // body0: 'font-size: 2.4rem; font-weight: 400; line-height: 2.0rem',
   body1: 'font-size: 1.8rem; font-weight: 400; line-height: 2.0rem',
   body2: 'font-size: 1.6rem; font-weight: 500; line-height: 2.0rem',
   body3: 'font-size: 1.4rem; font-weight: 400; line-height: 1.8rem',

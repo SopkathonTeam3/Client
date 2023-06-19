@@ -1,19 +1,20 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import styled from 'styled-components';
 
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import { getBottleSelector } from '../recoil/selectors/selector';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-
+import { shareReqModalAtom } from '../recoil/atoms/bottleAtom';
 const HomeHeader = ({ userid, roomid }) => {
   const [userName, setUserName] = useState();
   const [remainDays, setRemainDays] = useState();
   const [copied, setCopied] = useState(false);
-
+  const [isShare, setIsShare] = useRecoilState(shareReqModalAtom);
   const handleCopyClipBoard = () => {
     alert('클립보드에 편지 전달 링크가 복사되었어요!');
+    setIsShare(1);
   };
-
+  console.log('isShare ' + isShare);
   const onCopy = useCallback(() => {
     setCopied(true);
   });

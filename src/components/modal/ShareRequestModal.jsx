@@ -3,20 +3,23 @@ import styled from 'styled-components';
 import share from '../../assets/img/share.png';
 import modalClose from '../../assets/svgs/modal_close.svg';
 
-const ShareRequestModal = () => {
+const ShareRequestModal = ({ reqClose }) => {
+  const handleModalClose = e => {
+    reqClose(false);
+    e.stopPropagation();
+  };
   return (
     <St.ModalWrapper>
       <St.CloseWrapper>
-        <img src={modalClose} alt="모달 닫기 버튼" />
+        <img
+          src={modalClose}
+          alt="모달 닫기 버튼"
+          onClick={handleModalClose}
+          style={{ cursor: 'pointer' }}
+        />
       </St.CloseWrapper>
-      <St.ModalTitle>
-        <p>잠긴 편지를 읽으려면 </p>
-        <p> 바다를 공유해야해요!</p>
-      </St.ModalTitle>
-      <St.ModalSubTitle>
-        <p> 편지 요청하기 버튼으로</p>
-        <p> 친구에게 링크를 공유해보세요</p>
-      </St.ModalSubTitle>
+      <St.ModalTitle>잠긴 편지를 읽으려면 바다를 공유해야해요!</St.ModalTitle>
+      <St.ModalSubTitle>편지 요청하기 버튼으로 친구에게 링크를 공유해보세요</St.ModalSubTitle>
       <img style={{ width: '29.3rem', height: '12.9rem' }} src={share} alt="물병" />
     </St.ModalWrapper>
   );
@@ -34,6 +37,7 @@ const St = {
     width: 29.3rem;
     height: 29.8rem;
 
+    background-color: white;
     border-radius: 2rem;
   `,
   CloseWrapper: styled.div`
@@ -50,8 +54,9 @@ const St = {
     align-items: center;
     flex-direction: column;
 
-    width: 16.7rem;
+    width: 19.7rem;
     height: 5.6rem;
+    margin-bottom: 10px;
     ${({ theme }) => theme.text.subtitle2};
   `,
 
