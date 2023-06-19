@@ -89,7 +89,7 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
           <St.ModalAnswerBox
             onChange={handleOne}
             value={answerOne}
-            maxLength="50"
+            maxlength="50"
             placeholder="50자 내로 작성해주세요"
             readOnly={readOnly}
           />
@@ -99,7 +99,7 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
         <St.ModalAnswerBox
           onChange={handleTwo}
           value={answerTwo}
-          maxLength="50"
+          maxlength="50"
           placeholder="50자 내로 작성해주세요"
           readOnly={readOnly}
         />
