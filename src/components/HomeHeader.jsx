@@ -5,7 +5,9 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import { getBottleSelector } from '../recoil/selectors/selector';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { shareReqModalAtom } from '../recoil/atoms/bottleAtom';
+import { useNavigate } from 'react-router-dom';
 const HomeHeader = ({ userid, roomid }) => {
+  const navigate = useNavigate();
   const [userName, setUserName] = useState();
   const [remainDays, setRemainDays] = useState();
   const [copied, setCopied] = useState(false);
@@ -28,7 +30,7 @@ const HomeHeader = ({ userid, roomid }) => {
     setUserName(userResponseDto.name);
     setRemainDays(roomResponseDto.remainingDays);
   }, []);
-  console.log(userResponseDto, roomResponseDto);
+  //https://foryouletter.vercel.app/
   return (
     <St.headerWrapper>
       <St.headerTop>
@@ -37,6 +39,7 @@ const HomeHeader = ({ userid, roomid }) => {
           <St.headerBtn onClick={() => handleCopyClipBoard()}>편지 요청하기</St.headerBtn>
         </CopyToClipboard>
       </St.headerTop>
+
       {remainDays > 0 ? (
         <St.headerContent>
           편지 열람까지 <St.dayHighLight>{remainDays}</St.dayHighLight>일 남았어요
@@ -79,6 +82,11 @@ const St = {
     ${({ theme }) => theme.text.body2};
     color: #7d7d7d;
   `,
+
+  contentBox: styled.div`
+    width: 200px;
+  `,
+
   dayHighLight: styled.span`
     ${({ theme }) => theme.text.body2};
     color: ${({ theme }) => theme.color.blue};
