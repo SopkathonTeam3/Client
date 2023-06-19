@@ -68,9 +68,10 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
   }, []);
 
   const maxLengthCheck = object => {
-    if (object.value.length > object.maxLength) {
-      object.value = object.value.slice(0, object.maxLength);
-    }
+    if (object)
+      if (object.value.length > object.maxLength) {
+        object.value = object.value.slice(0, object.maxLength);
+      }
   };
 
   return (
@@ -94,10 +95,10 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
           <St.ModalAnswerBox
             onChange={handleOne}
             value={answerOne}
-            maxlength="60"
-            placeholder="60자 내로 작성해주세요"
+            maxlength="100"
+            placeholder="100자 내로 작성해주세요"
             readOnly={readOnly}
-            onInput={maxLengthCheck}
+            onInput={maxLengthCheck(this)}
           />
         </p>
 
@@ -105,10 +106,10 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
         <St.ModalAnswerBox
           onChange={handleTwo}
           value={answerTwo}
-          maxlength="60"
-          placeholder="60자 내로 작성해주세요"
+          maxlength="100"
+          placeholder="100자 내로 작성해주세요"
           readOnly={readOnly}
-          onInput={maxLengthCheck}
+          onInput={maxLengthCheck(this)}
         />
       </St.ModalMain>
       {bottleId != 1 ? (
@@ -202,7 +203,7 @@ const St = {
     margin-bottom: 2.4rem;
     padding: 2rem;
     resize: none;
-    ${({ theme }) => theme.text.body2};
+    ${({ theme }) => theme.text.body4};
     font-family: inherit;
   `,
 
