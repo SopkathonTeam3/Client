@@ -66,6 +66,13 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
       setReadOnly(false);
     }
   }, []);
+
+  const maxLengthCheck = object => {
+    if (object.value.length > object.maxLength) {
+      object.value = object.value.slice(0, object.maxLength);
+    }
+  };
+
   return (
     <St.ModalWrapper>
       <St.ModalHeader>
@@ -90,6 +97,7 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
             maxlength="60"
             placeholder="60자 내로 작성해주세요"
             readOnly={readOnly}
+            onInput={maxLengthCheck}
           />
         </p>
 
@@ -100,6 +108,7 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
           maxlength="60"
           placeholder="60자 내로 작성해주세요"
           readOnly={readOnly}
+          onInput={maxLengthCheck}
         />
       </St.ModalMain>
       {bottleId != 1 ? (
