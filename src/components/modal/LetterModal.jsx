@@ -53,9 +53,13 @@ const LetterModal = ({ setIsOpen, bottleId, content1, content2 }) => {
   };
 
   const createLetter = async e => {
-    await postLetter(userid, roomid, answerOne, answerTwo);
-    closeModal(e);
-    window.location.reload();
+    if (answerOne && answerTwo) {
+      await postLetter(userid, roomid, answerOne, answerTwo);
+      closeModal(e);
+      window.location.reload();
+    } else {
+      alert('편지 내용을 모두 입력해 주세요!');
+    }
   };
   useEffect(() => {
     handleAnswer();
