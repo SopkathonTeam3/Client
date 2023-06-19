@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 // import { Icon } from './Icon/index';
 import BottleRight1 from './../assets/svgs/bottle_right_1.svg';
@@ -12,14 +12,21 @@ import BottleLeft4 from './../assets/svgs/bottle_left_4.svg';
 import BottleLeft8 from './../assets/svgs/bottle_left_8.svg';
 
 import LetterModal from './modal/LetterModal';
+import ShareRequestModal from './modal/ShareRequestModal';
 import PlusButtonImage from './../assets/svgs/plusButton.svg';
 import { useState } from 'react';
-
+import { useRecoilState } from 'recoil';
+import { shareReqModalAtom } from '../recoil/atoms/bottleAtom';
 const Bottle = ({ content1, content2, bottleId, remainDateCode, remainDay }) => {
   const rightMargin = bottleId % 2 === 1 ? '0px' : '120px';
   let backgroundImage = BottleLeft1;
   const [isOpen, setIsOpen] = useState(false);
+  const [isShare, setIsShare] = useRecoilState(shareReqModalAtom);
+  const [reqmodalOpen, setReqmodalOpen] = useState(false);
+  const [modalState, setModalState] = useState(false);
   console.log(remainDay);
+  // setIsShare(false);
+  console.log(isShare);
   if (bottleId % 2 === 1) {
     switch (remainDateCode) {
       case -4:
@@ -65,10 +72,24 @@ const Bottle = ({ content1, content2, bottleId, remainDateCode, remainDay }) => 
       alert('편지를 쓸 수 있는 날짜가 지났어요!');
     } else if (bottleId !== 1 && remainDay > 0) {
       alert(`편지 열람까지 ${remainDay}일 남았어요!`);
+    } else if (bottleId !== 1 && bottleId % 2 === 0 && remainDay <= 0 && !isShare) {
+      setReqmodalOpen(true);
+      console.log('reqModal open');
+    } else if (bottleId !== 1 && bottleId % 2 === 0 && remainDay <= 0 && isShare) {
+      setIsOpen(true);
+      console.log('on share ');
     } else {
       setIsOpen(true);
     }
   };
+
+  console.log(isShare);
+  useEffect(() => {
+    if (isShare) {
+      setModalState(false);
+      console.log('공유값 바뀜~');
+    }
+  }, [isShare]);
 
   return (
     <BottleContainer
@@ -87,6 +108,16 @@ const Bottle = ({ content1, content2, bottleId, remainDateCode, remainDay }) => 
           />
         </ModalWrapper>
       )}
+      {reqmodalOpen && (
+        <ModalWrapper className={isOpen ? 'modal' : ''}>
+          <ShareRequestModal reqClose={setReqmodalOpen} />
+        </ModalWrapper>
+      )}
+      {/* {isOpen && reqmodalOpen && !isShare && (
+        <ModalWrapper className={isOpen ? 'modal' : ''}>
+          <ShareRequestModal reqClose={setReqmodalOpen} />
+        </ModalWrapper>
+      )} */}
     </BottleContainer>
   );
 };
@@ -133,7 +164,7 @@ const ModalWrapper = styled.div`
   top: 0;
   bottom: 0;
 
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.1);
 
   cursor: auto;
 `;
