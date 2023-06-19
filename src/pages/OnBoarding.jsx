@@ -70,7 +70,7 @@ const St = {
     padding-bottom: 36px;
 
     & > p {
-      ${({ theme }) => theme.text.subtitle2.body1};
+      ${({ theme }) => theme.text.body1};
       color: #7d7d7d;
     }
   `,
