@@ -11,10 +11,8 @@ const BottleList = ({ userid, roomid }) => {
     getBottleSelector({ userId: userid, roomId: roomid })
   );
 
-  console.log(userResponseDto, posts, roomResponseDto);
   const { remainingCode: remainDateCode, remainingDays: remainDay } = roomResponseDto;
 
-  console.log(remainDateCode, remainDay);
   const bgColor = userResponseDto.backgroundColorCode;
   const bottles = posts;
 
@@ -31,7 +29,7 @@ const BottleList = ({ userid, roomid }) => {
           remainDay={remainDay}
         />
       ))}
-      <MainpageBtn onClick={() => navigate('/')}>나만의 바다 만들기</MainpageBtn>
+      <MainpageBtn onClick={() => navigate('/')}>나의 바다 만들기</MainpageBtn>
     </BottleListWrapper>
   );
 };
@@ -57,6 +55,11 @@ const MainpageBtn = styled.button`
   padding: 12px 10px;
   background-color: ${({ theme }) => theme.color.black};
   color: ${({ theme }) => theme.color.white};
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
 `;
 
 export default BottleList;

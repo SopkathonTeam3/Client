@@ -41,7 +41,6 @@ const CustomColor = () => {
 
   const postUserData = async () => {
     const { userId, roomId } = await usePostUser(reqData);
-    console.log(userId, roomId);
     if (userId && roomId) {
       window.localStorage.removeItem('userName');
       setUserInfo({ userId: userId, roomId: roomId });
@@ -51,16 +50,6 @@ const CustomColor = () => {
   };
 
   const handleClickNext = () => {
-    // if (userName) {
-    //   window.localStorage.removeItem('userName');
-    //   postUserData();
-    //   console.log(data);
-    //   // console.log('성공 !!!!!'); //1
-    //   // console.log(userData, '???'); //2
-    //   // if (userId && roomId) {
-    //   //   navigate(`/main/${userId}/${roomId}`);
-    //   // }
-    // }
     postUserData();
   };
 
