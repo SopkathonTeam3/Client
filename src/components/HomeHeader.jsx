@@ -62,10 +62,13 @@ const St = {
   `,
   headerTop: styled.div`
     display: flex;
+    justify-content: space-between;
     padding: 42px 0 9px 0;
-    gap: 63px;
+    /* gap: 63px; */
   `,
   headerTitle: styled.h1`
+    width: 122px;
+    height: 84px;
     font-weight: 700;
     font-size: 28px;
     line-height: 42px;
@@ -77,6 +80,11 @@ const St = {
     padding: 12px 10px;
     background-color: ${({ theme }) => theme.color.black};
     color: ${({ theme }) => theme.color.white};
+    font-family: 'Pretendard';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
   `,
   headerContent: styled.p`
     ${({ theme }) => theme.text.body2};
