@@ -25,7 +25,6 @@ const OnBoarding = () => {
           <p>친구들에게 편지를 받아</p>
           <p>내 바다를 유리병으로 채워보아요</p>
         </St.Subtitle>
-
         <St.MakeBtn onClick={handleStart}>내 바다 만들기</St.MakeBtn>
         <img src={float} alt="바닥" />
       </St.Wrapper>
