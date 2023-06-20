@@ -37,7 +37,7 @@ const BottleList = ({ userid, roomid }) => {
 const BottleListWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  height: ${props => (props.bottle.length < 2 ? '700px' : 'auto')};
+  height: ${props => (props.bottle.length < 3 ? '800px' : 'auto')};
   margin: 0px 16px;
   padding: 20px 30px;
   background-image: ${({ bgColor }) => bgColor};

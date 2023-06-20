@@ -34,9 +34,16 @@ const HomeHeader = ({ userid, roomid }) => {
   return (
     <St.headerWrapper>
       <St.headerTop>
-        <St.headerTitle>{userName}님의 바다</St.headerTitle>
-        <CopyToClipboard onCopy={onCopy} text={window.location.href}>
-          <St.headerBtn onClick={() => handleCopyClipBoard()}>편지 요청하기</St.headerBtn>
+        <St.headerContainer>
+          <St.headerTitle>{userName}님의 바다</St.headerTitle>
+        </St.headerContainer>
+        <CopyToClipboard
+          onCopy={onCopy}
+          text={remainDays > 0 ? window.location.href : 'https://oceanforyou.vercel.app/'}
+        >
+          <St.headerBtn onClick={() => handleCopyClipBoard()}>
+            {remainDays > 0 ? '편지 요청하기' : '바다 공유하기'}
+          </St.headerBtn>
         </CopyToClipboard>
       </St.headerTop>
 
@@ -55,7 +62,8 @@ export default HomeHeader;
 
 const St = {
   headerWrapper: styled.section`
-    height: 175px;
+    /* height: 175px; */
+    height: fit-content;
     width: 100%;
     padding: 0 32px;
     background-color: ${({ theme }) => theme.color.white};
@@ -66,12 +74,16 @@ const St = {
     padding: 42px 0 9px 0;
     /* gap: 63px; */
   `,
+  headerContainer: styled.div`
+    width: 172px;
+    /* height: 84px; */
+    height: fit-content;
+  `,
   headerTitle: styled.h1`
-    width: 122px;
-    height: 84px;
     font-weight: 700;
     font-size: 28px;
     line-height: 42px;
+    word-break: break-all;
   `,
   headerBtn: styled.button`
     width: 127px;
@@ -83,7 +95,7 @@ const St = {
     font-family: 'Pretendard';
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
   `,
   headerContent: styled.p`
