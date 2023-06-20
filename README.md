@@ -233,5 +233,5 @@
 </details>
 
 
-## 🔥 구현영상
-[구현영상 링크](https://quasar-smelt-153.notion.site/3-eab7b57999584808b39b16549bac4644)
+## 🔥 배포 링크
+[🍾표류병 : For you 병](https://oceanforyou.vercel.app/)
