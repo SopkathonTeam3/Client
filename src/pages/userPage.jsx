@@ -17,8 +17,12 @@ const UserPage = () => {
   };
 
   const handleUserSubmit = () => {
-    userName && localStorage.setItem('userName', userName);
-    navigate('/custom');
+    if (userName) {
+      localStorage.setItem('userName', userName);
+      navigate('/custom');
+    } else {
+      alert('이름을 입력해주세요!');
+    }
   };
 
   const handleEnter = e => {
@@ -37,7 +41,12 @@ const UserPage = () => {
         </p>
       </St.userInfoText>
       <St.userInfoIcon src={user_smile} />
-      <St.userNameInput ref={inputRef} onChange={handleInputChange} onKeyDown={handleEnter} />
+      <St.userNameInput
+        ref={inputRef}
+        onChange={handleInputChange}
+        onKeyDown={handleEnter}
+        autoFocus
+      />
       <St.userSubmitBtn isClickable={isClickable} onClick={handleUserSubmit}>
         다음으로
       </St.userSubmitBtn>
